@@ -27,6 +27,7 @@ jobs:
         run: |
           echo "[" > images.json
           file_count=0
+          shopt -s nullglob  # Prevents wildcard issues
           for file in resources/*.jpg; do
             if [ -f "$file" ]; then
               file_count=$((file_count+1))
@@ -36,6 +37,7 @@ jobs:
               # Fetch description from descriptions.json, default to "No description available."
               description=$(jq -r --arg FILE "$filename" '.[$FILE] // "No description available."' descriptions.json)
 
+              # Append JSON entry
               echo "  {" >> images.json
               echo "    \"filename\": \"$filename\"," >> images.json
               echo "    \"title\": \"$title\"," >> images.json
