@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const imageDir = './resources/images'; // ✅ Updated correct path
+const imageDir = './resources/images';
 const outputFile = './images.json';
 
 fs.readdir(imageDir, (err, files) => {
@@ -11,9 +11,9 @@ fs.readdir(imageDir, (err, files) => {
     }
 
     const images = files
-        .filter(file => file.toLowerCase().endsWith('.jpg')) // ✅ Ensure only JPGs are included
+        .filter(file => file.toLowerCase().endsWith('.jpg'))
         .map(file => ({
-            src: `resources/images/${file}`, // ✅ Corrected path format for images.json
+            src: `resources/images/${encodeURIComponent(file)}`, // ✅ Encode spaces
             description: file.replace('.jpg', '').replace(/_/g, ' ').replace(/\(Large\)/g, '').trim()
         }));
 
