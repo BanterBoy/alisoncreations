@@ -1,9 +1,8 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const galleryDiv = document.getElementById("gallery");
     const imageContainer = document.getElementById("image-container");
 
     if (galleryDiv) {
-        // Load gallery images from JSON
         fetch('images.json')
             .then(response => response.json())
             .then(images => {
@@ -19,11 +18,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
                         let link = document.createElement("a");
                         link.href = `resources/${image.filename}`;
-                        link.setAttribute("data-lightbox", "gallery"); // Add this line
-                        link.setAttribute("data-title", image.title); // Add this line
+                        link.setAttribute("data-lightbox", "gallery");
+                        link.setAttribute("data-title", `${image.title} - ${image.description}`);
                         link.appendChild(imgElement);
 
                         galleryDiv.appendChild(link);
+                    });
+
+                    // Ensure Lightbox2 initializes correctly
+                    lightbox.option({
+                        'resizeDuration': 200,
+                        'wrapAround': true
                     });
                 }
             })
@@ -34,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     if (imageContainer) {
-        // Load image details
         const params = new URLSearchParams(window.location.search);
         const imageName = params.get("id");
 
