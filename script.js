@@ -1,21 +1,36 @@
-fetch('images.json')
-    .then(response => response.json())
-    .then(images => {
-        const gallery = document.getElementById("gallery");
+document.addEventListener("DOMContentLoaded", function () {
+    const gallery = document.getElementById("gallery");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxCaption = document.getElementById("lightbox-caption");
 
-        images.forEach(img => {
-            const imgElement = document.createElement("img");
+    fetch('images.json')
+        .then(response => response.json())
+        .then(images => {
+            images.forEach(img => {
+                const imgElement = document.createElement("img");
 
-            // ✅ Construct the full absolute URL
-            imgElement.src = `https://alisoncreations.co.uk/${img.src}`;
-            imgElement.alt = img.description || "Image";
+                // ✅ Use absolute URL
+                imgElement.src = `https://alisoncreations.co.uk/${img.src}`;
+                imgElement.alt = img.description || "Image";
+                imgElement.classList.add("gallery-item");
 
-            // Redirect to details page on click
-            imgElement.addEventListener("click", function () {
-                window.location.href = `details.html?src=${encodeURIComponent(img.src)}&desc=${encodeURIComponent(img.description)}`;
+                // Open Lightbox on click
+                imgElement.onclick = () => openLightbox(imgElement.src, imgElement.alt);
+
+                gallery.appendChild(imgElement);
             });
+        })
+        .catch(error => console.error('Error loading images:', error));
 
-            gallery.appendChild(imgElement);
-        });
-    })
-    .catch(error => console.error('❌ Error loading images:', error));
+    // Lightbox functions
+    function openLightbox(src, caption) {
+        lightbox.style.display = "block";
+        lightboxImg.src = src;
+        lightboxCaption.textContent = caption;
+    }
+
+    document.querySelector(".close").addEventListener("click", function () {
+        lightbox.style.display = "none";
+    });
+});
