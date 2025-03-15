@@ -7,20 +7,28 @@ document.addEventListener("DOMContentLoaded", function() {
         fetch('images.json')
             .then(response => response.json())
             .then(images => {
-                images.forEach(image => {
-                    let imgElement = document.createElement("img");
-                    imgElement.src = `resources/${image.filename}`;
-                    imgElement.alt = image.title;
-                    imgElement.classList.add("thumbnail");
+                galleryDiv.innerHTML = ''; // Clear the placeholder message
+                if (images.length === 0) {
+                    galleryDiv.innerHTML = '<p>No images available.</p>';
+                } else {
+                    images.forEach(image => {
+                        let imgElement = document.createElement("img");
+                        imgElement.src = `resources/${image.filename}`;
+                        imgElement.alt = image.title;
+                        imgElement.classList.add("thumbnail");
 
-                    let link = document.createElement("a");
-                    link.href = `image.html?id=${image.filename}`;
-                    link.appendChild(imgElement);
+                        let link = document.createElement("a");
+                        link.href = `image.html?id=${image.filename}`;
+                        link.appendChild(imgElement);
 
-                    galleryDiv.appendChild(link);
-                });
+                        galleryDiv.appendChild(link);
+                    });
+                }
             })
-            .catch(error => console.error("Error loading images:", error));
+            .catch(error => {
+                console.error("Error loading images:", error);
+                galleryDiv.innerHTML = '<p>Error loading images.</p>';
+            });
     }
 
     if (imageContainer) {
