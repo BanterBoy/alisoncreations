@@ -1,28 +1,59 @@
+/* General Styles */
 body {
+    background-color: black;
+    color: white;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     text-align: center;
 }
 
-.carousel {
-    width: 80%;
+/* Logo */
+.logo {
+    width: 150px;
     margin: 20px auto;
+    display: block;
 }
 
+/* Carousel Container */
+.carousel-container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Carousel Images */
 .carousel img {
     width: 100%;
     height: auto;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
-.carousel-caption {
-    font-size: 14px;
-    color: #333;
-    margin-top: 5px;
+/* Navigation Button Styling */
+.slick-prev,
+.slick-next {
+    font-size: 30px;
+    color: gold !important;
+    /* Make arrows gold */
+    z-index: 10;
 }
 
-/* Lightbox Styles */
+.slick-prev:hover,
+.slick-next:hover {
+    color: white !important;
+    /* Change on hover */
+}
+
+.slick-dots li button:before {
+    color: gold !important;
+    /* Make dots gold */
+}
+
+.slick-dots li.slick-active button:before {
+    color: white !important;
+    /* Active dot is white */
+}
+
+/* Lightbox */
 .lightbox {
     display: none;
     position: fixed;
@@ -31,29 +62,22 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
-    justify-content: center;
+    display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
 }
 
 .lightbox img {
     max-width: 90%;
-    max-height: 80%;
-    border-radius: 5px;
+    max-height: 90%;
 }
 
-.lightbox-caption {
-    color: white;
-    margin-top: 10px;
-    font-size: 18px;
-}
-
-/* Close button */
-.close {
+.lightbox .close {
     position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 40px;
+    top: 10px;
+    right: 20px;
     color: white;
+    font-size: 30px;
     cursor: pointer;
 }
