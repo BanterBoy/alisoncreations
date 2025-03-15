@@ -1,8 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch('resources/images/images.json')  // Adjust path if needed
+    fetch('images.json')  // Make sure the path is correct
         .then(response => response.json())
         .then(data => {
             let carousel = document.getElementById("image-carousel");
+
+            // Check JSON is loading correctly
+            console.log("Loaded JSON Data:", data);
 
             // Populate carousel dynamically
             data.forEach(imageObj => {
@@ -30,15 +33,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Lightbox Functions
 function openLightbox(imageSrc, description) {
+    console.log("Opening Lightbox with Image:", imageSrc); // Debugging line
+
     let lightbox = document.getElementById("lightbox");
     let lightboxImg = document.getElementById("lightbox-img");
     let lightboxDesc = document.getElementById("lightbox-desc");
 
-    lightbox.style.display = "flex";
+    // Assign the correct image and description
     lightboxImg.src = imageSrc;
+    lightboxImg.alt = description;
     lightboxDesc.innerText = description;
+
+    lightbox.style.display = "flex";
 }
 
-document.querySelector(".close").addEventListener("click", function() {
+// Close lightbox
+document.getElementById("close-lightbox").addEventListener("click", function() {
     document.getElementById("lightbox").style.display = "none";
 });
