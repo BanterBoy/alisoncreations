@@ -6,92 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alison Resin Creations</title>
 
-    <!-- Keep your existing styles and content -->
+    <!-- Slick Carousel CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css" />
 
-    <style>
-        /* Keep your original styles */
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-
-        /* Logo Styling */
-        .logo {
-            width: 150px;
-            margin: 20px auto;
-            display: block;
-        }
-
-        /* Carousel Container */
-        .carousel-container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-        }
-
-        .carousel img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        /* Navigation Button Styling */
-        .slick-prev,
-        .slick-next {
-            font-size: 30px;
-            color: gold !important;
-            /* Make arrows gold */
-            z-index: 10;
-        }
-
-        .slick-prev:hover,
-        .slick-next:hover {
-            color: white !important;
-            /* Change on hover */
-        }
-
-        .slick-dots li button:before {
-            color: gold !important;
-            /* Make dots gold */
-        }
-
-        .slick-dots li.slick-active button:before {
-            color: white !important;
-            /* Active dot is white */
-        }
-
-        /* Lightbox */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-        }
-
-        .lightbox .close {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
-        }
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -111,62 +31,20 @@
         <div class="carousel"></div>
     </div>
 
-    <!-- Lightbox for Image Preview -->
+    <!-- Lightbox for Large Image Preview -->
     <div class="lightbox">
         <span class="close">&times;</span>
-        <img src="" alt="Large Image">
+        <img id="lightbox-img" src="" alt="Large Image">
     </div>
 
-    <!-- Slick Carousel & jQuery -->
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Slick Carousel JS -->
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
 
-    <!-- Load Images and Initialize Carousel -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            fetch('images.json')
-                .then(response => response.json())
-                .then(images => {
-                    if (!Array.isArray(images)) {
-                        console.error("JSON data is not an array:", images);
-                        return;
-                    }
-
-                    let carousel = document.querySelector('.carousel');
-
-                    images.forEach(image => {
-                        let imgElement = document.createElement("img");
-                        imgElement.src = image.src;
-                        imgElement.alt = image.description;
-                        imgElement.dataset.large = image.src.replace("%20(Large)", ""); // Ensure proper large image paths
-                        carousel.appendChild(imgElement);
-                    });
-
-                    // Initialize Slick with enhanced navigation
-                    $('.carousel').slick({
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
-                        autoplay: true,
-                        autoplaySpeed: 3000,
-                        dots: true,
-                        arrows: true,
-                        prevArrow: '<button type="button" class="slick-prev">❮</button>',
-                        nextArrow: '<button type="button" class="slick-next">❯</button>'
-                    });
-
-                    // Lightbox Functionality
-                    $(".carousel img").on("click", function () {
-                        $(".lightbox img").attr("src", $(this).data("large"));
-                        $(".lightbox").fadeIn();
-                    });
-
-                    $(".lightbox .close").on("click", function () {
-                        $(".lightbox").fadeOut();
-                    });
-                })
-                .catch(error => console.error("Error loading images:", error));
-        });
-    </script>
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
 
 </body>
 
