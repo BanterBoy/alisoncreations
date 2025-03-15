@@ -1,48 +1,44 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const gallery = document.getElementById("gallery");
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
-
-    fetch('images.json')
+    fetch('resources/images/images.json')  // Adjust path if needed
         .then(response => response.json())
-        .then(images => {
-            images.forEach(img => {
-                const imgElement = document.createElement("img");
-                imgElement.src = `https://alisoncreations.co.uk/${decodeURIComponent(img.src)}`;
-                imgElement.alt = img.description || "Image";
-                imgElement.classList.add("carousel-image");
+        .then(data => {
+            let carousel = document.getElementById("image-carousel");
 
-                imgElement.onclick = function () {
-                    openLightbox(imgElement);
-                };
-
-                gallery.appendChild(imgElement);
+            // Populate carousel dynamically
+            data.forEach(imageObj => {
+                let imgElement = document.createElement("div");
+                imgElement.innerHTML = `
+                    <img src="${imageObj.src}" alt="${imageObj.description}" onclick="openLightbox('${imageObj.src}', '${imageObj.description}')">
+                    <p class="carousel-caption">${imageObj.description}</p>
+                `;
+                carousel.appendChild(imgElement);
             });
 
-            // Initialize Flickity after images are loaded
-            new Flickity(gallery, {
-                cellAlign: 'center',
-                contain: true,
-                wrapAround: true,
-                autoPlay: 3000
+            // Initialize Slick Carousel
+            $("#image-carousel").slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000
             });
         })
-        .catch(error => console.error('Error loading images:', error));
-
-    function openLightbox(imgElement) {
-        lightbox.style.display = "flex";
-        lightboxImg.src = imgElement.src;
-
-        // Clicking on the Lightbox moves to the next image in the carousel
-        lightbox.onclick = function () {
-            const flickityInstance = Flickity.data(gallery);
-            flickityInstance.next();
-            lightboxImg.src = flickityInstance.selectedElement.querySelector("img").src;
-        };
-    }
-
-    lightbox.onclick = function () {
-        lightbox.style.display = "none";
-    };
+        .catch(error => console.error("Error loading images.json:", error));
 });
 
+// Lightbox Functions
+function openLightbox(imageSrc, description) {
+    let lightbox = document.getElementById("lightbox");
+    let lightboxImg = document.getElementById("lightbox-img");
+    let lightboxDesc = document.getElementById("lightbox-desc");
+
+    lightbox.style.display = "flex";
+    lightboxImg.src = imageSrc;
+    lightboxDesc.innerText = description;
+}
+
+document.querySelector(".close").addEventListener("click", function() {
+    document.getElementById("lightbox").style.display = "none";
+});
