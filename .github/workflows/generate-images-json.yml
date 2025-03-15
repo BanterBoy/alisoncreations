@@ -1,0 +1,51 @@
+name: Generate Images JSON
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  generate-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Ensure descriptions.json exists
+        run: |
+          if [ ! -f descriptions.json ]; then
+            echo "{}" > descriptions.json
+          fi
+
+      - name: Install jq (JSON processor)
+        run: sudo apt-get install -y jq
+
+      - name: Generate images.json
+        run: |
+          echo "[" > images.json
+          for file in resources/*.jpg; do
+            filename=$(basename "$file")
+            title="${filename%.*}"
+
+            # Fetch description from descriptions.json, default to "No description available."
+            description=$(jq -r --arg FILE "$filename" '.[$FILE] // "No description available."' descriptions.json)
+
+            echo "  {" >> images.json
+            echo "    \"filename\": \"$filename\"," >> images.json
+            echo "    \"title\": \"$title\"," >> images.json
+            echo "    \"description\": \"$description\"" >> images.json
+            echo "  }," >> images.json
+          done
+          sed -i '$ s/,$//' images.json  # Remove trailing comma
+          echo "]" >> images.json
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions@github.com"
+          git add images.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-generate images.json from descriptions.json"
+          git push
