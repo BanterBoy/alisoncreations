@@ -1,31 +1,17 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const galleryDiv = document.getElementById("gallery");
+fetch('images.json')
+    .then(response => response.json())
+    .then(images => {
+        const gallery = document.getElementById("gallery");
+        images.forEach(img => {
+            const imgElement = document.createElement("img");
+            imgElement.src = img.src;
+            imgElement.alt = img.description;
 
-    if (galleryDiv) {
-        // Load gallery images from JSON
-        fetch("images.json")
-            .then((response) => response.json())
-            .then((images) => {
-                galleryDiv.innerHTML = ""; // Clear loading text
-
-                images.forEach((image) => {
-                    let imgElement = document.createElement("img");
-                    imgElement.src = `resources/${image.filename}`;
-                    imgElement.alt = image.title;
-                    imgElement.classList.add("thumbnail");
-
-                    let link = document.createElement("a");
-                    link.href = `resources/${image.filename}`;
-                    link.setAttribute("data-lightbox", "gallery");
-                    link.setAttribute("data-title", `${image.title} - ${image.description}`);
-                    link.appendChild(imgElement);
-
-                    galleryDiv.appendChild(link);
-                });
-            })
-            .catch((error) => {
-                console.error("Error loading images:", error);
-                galleryDiv.innerHTML = "<p>Failed to load images.</p>";
+            imgElement.addEventListener("click", function () {
+                window.location.href = `details.html?src=${encodeURIComponent(img.src)}&desc=${encodeURIComponent(img.description)}`;
             });
-    }
-});
+
+            gallery.appendChild(imgElement);
+        });
+    })
+    .catch(error => console.error('Error loading images:', error));

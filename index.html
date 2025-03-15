@@ -4,26 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Gallery</title>
-
-    <!-- Lightbox2 CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
-
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Dynamic Image Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 
 <body>
-    <h1>Photo Gallery</h1>
-    <div id="gallery" class="gallery-grid">
-        <p>Loading images...</p>
+    <h1>Dynamic Image Gallery</h1>
+    <div class="gallery" id="gallery"></div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
     </div>
-
-    <!-- Lightbox2 JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-
-    <!-- Custom Script -->
-    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
