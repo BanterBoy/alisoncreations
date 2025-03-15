@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const gallery = document.getElementById("gallery");
 
+    console.log("🛠 script.js is running...");
+
     fetch('images.json')
         .then(response => {
             console.log("📥 Fetching images.json...");
@@ -10,7 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return response.json();
         })
         .then(images => {
-            console.log("✅ images.json loaded successfully:", images);
+            console.log("✅ images.json loaded:", images);
+
             if (!Array.isArray(images) || images.length === 0) {
                 console.error('❌ Error: images.json is empty or invalid');
                 gallery.innerHTML = "<p>No images found.</p>";
@@ -26,9 +29,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 const imgElement = document.createElement("img");
-                imgElement.src = `https://alisoncreations.co.uk/${decodeURIComponent(img.src)}`;
+                const decodedSrc = decodeURIComponent(img.src);
+                imgElement.src = `https://alisoncreations.co.uk/${decodedSrc}`;
                 imgElement.alt = img.description;
                 imgElement.classList.add("gallery-item");
+
+                // Log errors if image fails to load
+                imgElement.onerror = function () {
+                    console.error(`❌ Failed to load image: ${imgElement.src}`);
+                };
 
                 imgElement.onclick = function () {
                     openLightbox(imgElement.src, imgElement.alt);
@@ -36,6 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 gallery.appendChild(imgElement);
             });
+
+            console.log("🎉 All images processed successfully.");
         })
         .catch(error => {
             console.error('❌ Error loading images.json:', error);
