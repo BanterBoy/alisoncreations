@@ -1,33 +1,14 @@
-/* Global Styles */
+/* General Styling */
 body {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
     margin: 0;
     background: #000;
-    /* Black background */
     color: #FFD700;
-    /* Gold text */
 }
 
-h1,
-h2 {
-    color: #FFD700;
-    /* Gold headings */
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-p {
-    font-size: 1.2rem;
-    color: #e0c36b;
-}
-
-/* Header */
 header {
-    background: #111;
     padding: 20px;
-    text-align: center;
-    border-bottom: 2px solid #FFD700;
 }
 
 .logo {
@@ -35,30 +16,25 @@ header {
     margin-bottom: 10px;
 }
 
-/* Gallery */
-.gallery {
+/* Swiper Carousel */
+.swiper-container {
+    width: 90%;
+    height: 300px;
+    margin: auto;
+}
+
+.swiper-wrapper {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    padding: 20px;
+    align-items: center;
 }
 
-.gallery img {
-    width: 220px;
-    height: 170px;
-    border-radius: 10px;
+.swiper-slide img {
+    width: 300px;
+    height: 250px;
     object-fit: cover;
+    border: 3px solid #FFD700;
+    border-radius: 10px;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 2px solid #FFD700;
-    /* Gold border */
-}
-
-.gallery img:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px #FFD700;
-    /* Gold glow */
 }
 
 /* Lightbox */
@@ -74,7 +50,7 @@ header {
 }
 
 .lightbox-content {
-    max-width: 90%;
+    max-width: 80%;
     max-height: 80%;
     display: block;
     margin: auto;
@@ -90,20 +66,21 @@ header {
     margin-top: 10px;
 }
 
-.close {
+/* Lightbox Navigation */
+.lightbox-prev,
+.lightbox-next {
     position: absolute;
-    top: 15px;
-    right: 35px;
-    font-size: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50px;
     color: #FFD700;
     cursor: pointer;
 }
 
-/* Footer */
-footer {
-    background: #111;
-    padding: 10px;
-    font-size: 1rem;
-    color: #FFD700;
-    border-top: 2px solid #FFD700;
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
 }
