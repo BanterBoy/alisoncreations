@@ -39,13 +39,16 @@ body {
 .lightbox img {
     max-width: 90%;
     max-height: 80%;
+    border-radius: 5px;
 }
 
 .lightbox-caption {
     color: white;
     margin-top: 10px;
+    font-size: 18px;
 }
 
+/* Close button */
 .close {
     position: absolute;
     top: 20px;
