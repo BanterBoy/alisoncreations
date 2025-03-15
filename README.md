@@ -1,19 +1,18 @@
 [![Generate Images JSON](https://github.com/BanterBoy/alisoncreations/actions/workflows/generate-json.yml/badge.svg)](https://github.com/BanterBoy/alisoncreations/actions/workflows/generate-json.yml)
 
-Sure! Here's a **README.md** file that explains everything about your **dynamic image gallery** project.
+## 📸 **Dynamic Lightbox Image Gallery**
+
+🚀 **A fully automated image gallery** hosted on **GitHub Pages**.  
+New images are **automatically detected** and updated in the gallery using **GitHub Actions**.
 
 ---
 
-# 📸 **Dynamic Image Gallery**
-
-🚀 **A fully automated image gallery** hosted on **GitHub Pages**. New images are **automatically detected** and updated in the gallery using **GitHub Actions**.
-
 ## 🎯 **Features**
 
-✅ Dynamically loads images from `resources/` folder  
-✅ Uses **GitHub Actions** to generate `images.json` whenever images change  
-✅ Displays images in a **responsive gallery** with a Lightbox effect  
-✅ Clicking an image opens a **dedicated details page** with a description  
+✅ **Dynamically loads images** from `resources/images/` folder  
+✅ **Uses GitHub Actions** to generate `images.json` automatically  
+✅ **Displays images in a responsive grid**  
+✅ **Uses a Lightbox effect for viewing images** (no separate details page)  
 ✅ **Fully automated deployment** via GitHub Pages
 
 ---
@@ -21,20 +20,14 @@ Sure! Here's a **README.md** file that explains everything about your **dynamic 
 ## 📂 **Project Structure**
 
 ```
-/my-image-gallery
-│── /resources            # Folder containing all JPG images
-│── /github
-│   ├── /scripts
-│   │   └── generate_images_json.js  # Script to generate images.json
-│   └── /workflows
-│       └── generate-json.yml  # GitHub Action to update images.json
-│── index.html            # Main gallery page
-│── details.html          # Individual image details page
-│── images.json           # JSON file with image data (auto-generated)
-│── styles.css            # CSS file for styling
-│── script.js             # JS file to load gallery images
-│── details.js            # JS file for image details page
-│── README.md             # Documentation
+/alisoncreations
+│── /resources/images    # Folder containing all JPG images
+│── /.github/workflows   # GitHub Actions for automation
+│── index.html           # Main gallery page
+│── images.json          # JSON file with image data (auto-generated)
+│── styles.css           # CSS file for styling
+│── script.js            # JS file for loading the gallery
+│── README.md            # Documentation
 ```
 
 ---
@@ -48,25 +41,27 @@ Sure! Here's a **README.md** file that explains everything about your **dynamic 
 3. Choose `main` or `gh-pages`, then **Save**.
 
 Your site will be available at:  
-🔗 `https://your-username.github.io/my-image-gallery/`
+🔗 `https://your-username.github.io/alisoncreations/`
 
 ---
 
 ### ✅ **2. Add Images**
 
-1. Place JPG images inside the `/resources/` folder.
+1. Place JPG images inside the `/resources/images/` folder.
 2. **GitHub Actions will automatically update** the `images.json` file.
+3. **Visit the site** and see the new images appear automatically.
 
 ---
 
 ### ✅ **3. How the Website Works**
 
-- **Gallery (`index.html`)**  
-  Loads images dynamically from `images.json`.
-- **Image Click**  
-  Opens `details.html` showing the image and its description.
-- **GitHub Actions**  
-  Updates `images.json` whenever new images are added.
+- **Gallery (`index.html`)**
+
+  - Loads images dynamically from `images.json`
+  - Clicking an image opens it in a **Lightbox**
+
+- **GitHub Actions**
+  - Updates `images.json` whenever new images are added
 
 ---
 
@@ -80,109 +75,141 @@ Your site will be available at:
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dynamic Image Gallery</title>
+    <title>Lightbox Image Gallery</title>
     <link rel="stylesheet" href="styles.css" />
     <script defer src="script.js"></script>
   </head>
   <body>
-    <h1>Dynamic Image Gallery</h1>
+    <h1>Lightbox Image Gallery</h1>
     <div class="gallery" id="gallery"></div>
-  </body>
-</html>
-```
 
-### 📌 **Image Details (`details.html`)**
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image Details</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script defer src="details.js"></script>
-  </head>
-  <body>
-    <h1>Image Details</h1>
-    <div class="image-container">
-      <img id="detail-img" src="" alt="" />
-      <p id="detail-desc"></p>
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+      <span class="close" onclick="closeLightbox()">&times;</span>
+      <img class="lightbox-content" id="lightbox-img" />
+      <div id="lightbox-caption"></div>
     </div>
-    <a href="index.html">Back to Gallery</a>
   </body>
 </html>
 ```
 
-### 📌 **JavaScript for Gallery (`script.js`)**
+---
 
-```js
-fetch("images.json")
-  .then((response) => response.json())
-  .then((images) => {
-    const gallery = document.getElementById("gallery");
-    images.forEach((img) => {
-      const imgElement = document.createElement("img");
-      imgElement.src = img.src;
-      imgElement.alt = img.description;
-      imgElement.onclick = () => {
-        window.location.href = `details.html?src=${encodeURIComponent(
-          img.src
-        )}&desc=${encodeURIComponent(img.description)}`;
-      };
-      gallery.appendChild(imgElement);
-    });
-  })
-  .catch((error) => console.error("Error loading images:", error));
+### 📌 **CSS for Styling (`styles.css`)**
+
+```css
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  background: #f4f4f4;
+}
+
+h1 {
+  margin: 20px 0;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.gallery img {
+  width: 200px;
+  height: 150px;
+  margin: 10px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.1);
+}
+
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-content {
+  max-width: 80%;
+  max-height: 80%;
+  margin: auto;
+  display: block;
+  margin-top: 5%;
+}
+
+#lightbox-caption {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
 ```
 
-### 📌 **JavaScript for Details Page (`details.js`)**
+---
+
+### 📌 **JavaScript to Load Gallery (`script.js`)**
 
 ```js
 document.addEventListener("DOMContentLoaded", function () {
-  const params = new URLSearchParams(window.location.search);
-  const src = params.get("src");
-  const desc = params.get("desc");
+  const gallery = document.getElementById("gallery");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const lightboxCaption = document.getElementById("lightbox-caption");
 
-  if (src && desc) {
-    document.getElementById("detail-img").src = src;
-    document.getElementById("detail-desc").innerText = desc;
+  fetch("images.json")
+    .then((response) => response.json())
+    .then((images) => {
+      images.forEach((img) => {
+        const imgElement = document.createElement("img");
+
+        imgElement.src = `https://alisoncreations.co.uk/${decodeURIComponent(
+          img.src
+        )}`;
+        imgElement.alt = img.description || "Image";
+        imgElement.classList.add("gallery-item");
+
+        imgElement.onclick = () => openLightbox(imgElement.src, imgElement.alt);
+        gallery.appendChild(imgElement);
+      });
+    })
+    .catch((error) => console.error("Error loading images:", error));
+
+  function openLightbox(src, caption) {
+    lightbox.style.display = "block";
+    lightboxImg.src = src;
+    lightboxCaption.textContent = caption;
   }
+
+  document.querySelector(".close").addEventListener("click", function () {
+    lightbox.style.display = "none";
+  });
 });
 ```
 
 ---
 
-## 🤖 **Automating Image JSON with GitHub Actions**
-
-### 📌 **Generate `images.json` (`.github/scripts/generate_images_json.js`)**
-
-```js
-const fs = require("fs");
-const path = require("path");
-
-const imageDir = "./resources";
-const outputFile = "./images.json";
-
-fs.readdir(imageDir, (err, files) => {
-  if (err) {
-    console.error("Error reading directory:", err);
-    process.exit(1);
-  }
-
-  const images = files
-    .filter((file) => file.endsWith(".jpg"))
-    .map((file) => ({
-      src: `resources/${file}`,
-      description: file.replace(".jpg", "").replace(/_/g, " "),
-    }));
-
-  fs.writeFileSync(outputFile, JSON.stringify(images, null, 2));
-  console.log("✅ Image list updated in images.json");
-});
-```
-
-### 📌 **GitHub Action (`.github/workflows/generate-json.yml`)**
+### 📌 **GitHub Action to Auto-Update `images.json` (`.github/workflows/generate-json.yml`)**
 
 ```yaml
 name: Generate Images JSON
@@ -223,7 +250,7 @@ jobs:
 
 ## 🔥 **How It Works**
 
-1. **You push new images** to `/resources/`.
+1. **You push new images** to `/resources/images/`.
 2. **GitHub Actions runs**, updates `images.json`, and commits changes.
 3. **The gallery auto-updates** without manual changes.
 4. **GitHub Pages serves the latest version** of the site.
@@ -232,7 +259,7 @@ jobs:
 
 ## 🌟 **Live Demo (Optional)**
 
-[🔗 Visit the Gallery](https://your-username.github.io/my-image-gallery/)
+[🔗 Visit the Gallery](https://alisoncreations.co.uk/)
 
 ---
 
@@ -244,7 +271,3 @@ jobs:
 ✅ **Minimal setup with dynamic loading**
 
 🚀 **Now you have a fully automated image gallery!** Enjoy! 🎉
-
----
-
-Let me know if you need any modifications! 🔥
