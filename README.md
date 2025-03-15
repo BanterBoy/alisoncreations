@@ -1,3 +1,5 @@
+[![Generate Images JSON](https://github.com/BanterBoy/alisoncreations/actions/workflows/generate-json.yml/badge.svg)](https://github.com/BanterBoy/alisoncreations/actions/workflows/generate-json.yml)
+
 Sure! Here's a **README.md** file that explains everything about your **dynamic image gallery** project.
 
 ---
