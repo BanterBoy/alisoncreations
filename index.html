@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alison Resin Creations - Handmade Resin Art</title>
 
-    <!-- Google Font (Montserrat for Elegance) -->
+    <!-- Google Font (Montserrat - Elegant & Professional) -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- Flickity Carousel Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.2/flickity.min.css">
 
-    <!-- SwiperJS for Carousel -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 
 <body>
@@ -21,30 +21,18 @@
         <img src="https://alisoncreations.co.uk/Gold%20Luxury%20Initial%20Circle%20Logo.png"
             alt="Alison Resin Creations Logo" class="logo">
         <h1>Alison Resin Creations</h1>
-        <p>Handmade Resin Art | Custom Creations | Unique Designs</p>
+        <p>Beautiful Handmade Resin Art</p>
     </header>
 
-    <!-- Image Carousel -->
-    <div class="swiper-container">
-        <div class="swiper-wrapper" id="gallery"></div>
-
-        <!-- Navigation Buttons -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-    </div>
+    <div class="carousel" id="gallery"></div>
 
     <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox">
-        <span class="close" onclick="closeLightbox()">&times;</span>
         <img class="lightbox-content" id="lightbox-img">
-        <div id="lightbox-caption"></div>
-        <div class="lightbox-prev" onclick="prevImage()">&#10094;</div>
-        <div class="lightbox-next" onclick="nextImage()">&#10095;</div>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script defer src="script.js"></script>
+    <!-- Flickity Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.2/flickity.pkgd.min.js"></script>
 </body>
 
 </html>

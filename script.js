@@ -2,67 +2,46 @@ document.addEventListener("DOMContentLoaded", function () {
     const gallery = document.getElementById("gallery");
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
-    const lightboxCaption = document.getElementById("lightbox-caption");
-
-    let imagesArray = [];
-    let currentImageIndex = 0;
 
     fetch('images.json')
         .then(response => response.json())
         .then(images => {
-            imagesArray = images;
-            
-            images.forEach((img, index) => {
-                const imgElement = document.createElement("div");
-                imgElement.classList.add("swiper-slide");
+            images.forEach(img => {
+                const imgElement = document.createElement("img");
+                imgElement.src = `https://alisoncreations.co.uk/${decodeURIComponent(img.src)}`;
+                imgElement.alt = img.description || "Image";
+                imgElement.classList.add("carousel-image");
 
-                const image = document.createElement("img");
-                image.src = `https://alisoncreations.co.uk/${decodeURIComponent(img.src)}`;
-                image.alt = img.description || "Image";
-                image.setAttribute("data-index", index);
-                image.onclick = () => openLightbox(index);
+                imgElement.onclick = function () {
+                    openLightbox(imgElement);
+                };
 
-                imgElement.appendChild(image);
                 gallery.appendChild(imgElement);
             });
 
-            new Swiper('.swiper-container', {
-                loop: true,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
+            // Initialize Flickity after images are loaded
+            new Flickity(gallery, {
+                cellAlign: 'center',
+                contain: true,
+                wrapAround: true,
+                autoPlay: 3000
             });
         })
         .catch(error => console.error('Error loading images:', error));
 
-    function openLightbox(index) {
-        currentImageIndex = index;
-        updateLightbox();
-        lightbox.style.display = "block";
+    function openLightbox(imgElement) {
+        lightbox.style.display = "flex";
+        lightboxImg.src = imgElement.src;
+
+        // Clicking on the Lightbox moves to the next image in the carousel
+        lightbox.onclick = function () {
+            const flickityInstance = Flickity.data(gallery);
+            flickityInstance.next();
+            lightboxImg.src = flickityInstance.selectedElement.querySelector("img").src;
+        };
     }
 
-    function updateLightbox() {
-        const imgData = imagesArray[currentImageIndex];
-        lightboxImg.src = `https://alisoncreations.co.uk/${decodeURIComponent(imgData.src)}`;
-        lightboxCaption.textContent = imgData.description;
-    }
-
-    function prevImage() {
-        currentImageIndex = (currentImageIndex - 1 + imagesArray.length) % imagesArray.length;
-        updateLightbox();
-    }
-
-    function nextImage() {
-        currentImageIndex = (currentImageIndex + 1) % imagesArray.length;
-        updateLightbox();
-    }
-
-    function closeLightbox() {
+    lightbox.onclick = function () {
         lightbox.style.display = "none";
-    }
-
-    document.querySelector(".close").addEventListener("click", closeLightbox);
-    document.querySelector(".lightbox-prev").addEventListener("click", prevImage);
-    document.querySelector(".lightbox-next").addEventListener("click", nextImage);
+    };
 });
