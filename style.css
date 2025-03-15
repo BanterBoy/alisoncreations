@@ -28,3 +28,7 @@ body {
     height: auto;
     margin-top: 10px;
 }
+
+#image-container {
+    margin-top: 20px;
+}
