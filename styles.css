@@ -1,6 +1,6 @@
-/* General Styles */
+/* Global Styles */
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
     margin: 0;
     background: #000;
@@ -9,16 +9,33 @@ body {
     /* Gold text */
 }
 
-h1 {
-    margin: 20px 0;
-    font-size: 2.5rem;
-    text-transform: uppercase;
+h1,
+h2 {
     color: #FFD700;
-    /* Gold */
-    font-weight: bold;
+    /* Gold headings */
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
-/* Gallery Styles */
+p {
+    font-size: 1.2rem;
+    color: #e0c36b;
+}
+
+/* Header */
+header {
+    background: #111;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #FFD700;
+}
+
+.logo {
+    width: 120px;
+    margin-bottom: 10px;
+}
+
+/* Gallery */
 .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -63,13 +80,11 @@ h1 {
     margin: auto;
     margin-top: 5%;
     border: 3px solid #FFD700;
-    /* Gold border */
     border-radius: 10px;
 }
 
 #lightbox-caption {
     color: #FFD700;
-    /* Gold */
     text-align: center;
     font-size: 1.2rem;
     margin-top: 10px;
@@ -81,17 +96,14 @@ h1 {
     right: 35px;
     font-size: 40px;
     color: #FFD700;
-    /* Gold */
     cursor: pointer;
 }
 
-/* Add a gold underline effect on hover */
-a {
+/* Footer */
+footer {
+    background: #111;
+    padding: 10px;
+    font-size: 1rem;
     color: #FFD700;
-    text-decoration: none;
-    transition: 0.3s ease;
-}
-
-a:hover {
-    text-decoration: underline;
+    border-top: 2px solid #FFD700;
 }
