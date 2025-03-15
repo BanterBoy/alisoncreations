@@ -49,6 +49,13 @@ h1 {
     margin-top: 5%;
 }
 
+#lightbox-caption {
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
 .close {
     position: absolute;
     top: 15px;
