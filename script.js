@@ -28,17 +28,21 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
 
-                const imgElement = document.createElement("img");
+                // ✅ Fix: Ensure `src` is correctly decoded
                 const decodedSrc = decodeURIComponent(img.src);
+
+                // ✅ Create image element
+                const imgElement = document.createElement("img");
                 imgElement.src = `https://alisoncreations.co.uk/${decodedSrc}`;
                 imgElement.alt = img.description;
                 imgElement.classList.add("gallery-item");
 
-                // Log errors if image fails to load
+                // ✅ Fix: Log if image fails to load
                 imgElement.onerror = function () {
                     console.error(`❌ Failed to load image: ${imgElement.src}`);
                 };
 
+                // ✅ Open in Lightbox on click
                 imgElement.onclick = function () {
                     openLightbox(imgElement.src, imgElement.alt);
                 };
