@@ -60,4 +60,9 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add images.json
           git diff --quiet && git diff --staged --quiet || git commit -m "Auto-generate images.json from descriptions.json"
-          git push
+
+          # Pull latest changes to prevent conflicts
+          git pull --rebase origin $(git rev-parse --abbrev-ref HEAD)
+
+          # Force push only if necessary
+          git push origin $(git rev-parse --abbrev-ref HEAD)
