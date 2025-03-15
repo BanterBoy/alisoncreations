@@ -1,53 +1,56 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch('images.json')  // Make sure the path is correct
+    fetch('images.json')
         .then(response => response.json())
-        .then(data => {
-            let carousel = document.getElementById("image-carousel");
+        .then(images => {
+            if (!Array.isArray(images)) {
+                console.error("JSON data is not an array:", images);
+                return;
+            }
 
-            // Check JSON is loading correctly
-            console.log("Loaded JSON Data:", data);
+            let carousel = document.querySelector('.carousel');
+            carousel.innerHTML = ''; // Clear old images
 
-            // Populate carousel dynamically
-            data.forEach(imageObj => {
-                let imgElement = document.createElement("div");
-                imgElement.innerHTML = `
-                    <img src="${imageObj.src}" alt="${imageObj.description}" onclick="openLightbox('${imageObj.src}', '${imageObj.description}')">
-                    <p class="carousel-caption">${imageObj.description}</p>
-                `;
-                carousel.appendChild(imgElement);
+            images.forEach(image => {
+                let anchor = document.createElement("a");
+                anchor.href = "#"; // Prevent default link behavior
+                anchor.dataset.large = image.src;
+                anchor.dataset.title = image.description;
+
+                let imgElement = document.createElement("img");
+                imgElement.src = image.src;
+                imgElement.alt = image.description;
+
+                anchor.appendChild(imgElement);
+                carousel.appendChild(anchor);
             });
 
-            // Initialize Slick Carousel
-            $("#image-carousel").slick({
-                dots: true,
-                infinite: true,
-                speed: 500,
+            // Initialize Slick with navigation fixes
+            $('.carousel').slick({
                 slidesToShow: 3,
                 slidesToScroll: 1,
                 autoplay: true,
-                autoplaySpeed: 3000
+                autoplaySpeed: 3000,
+                dots: true,
+                arrows: true,
+                prevArrow: '<button type="button" class="slick-prev">❮</button>',
+                nextArrow: '<button type="button" class="slick-next">❯</button>'
+            });
+
+            // Lightbox Functionality (Fixed)
+            document.querySelectorAll(".carousel a").forEach(item => {
+                item.addEventListener("click", function (event) {
+                    event.preventDefault(); // Stop default anchor behavior
+
+                    let largeImg = document.getElementById("lightbox-img");
+                    largeImg.src = this.dataset.large;
+                    
+                    document.querySelector(".lightbox").style.display = "flex";
+                });
+            });
+
+            document.querySelector(".lightbox .close").addEventListener("click", function () {
+                document.querySelector(".lightbox").style.display = "none";
             });
         })
-        .catch(error => console.error("Error loading images.json:", error));
-});
-
-// Lightbox Functions
-function openLightbox(imageSrc, description) {
-    console.log("Opening Lightbox with Image:", imageSrc); // Debugging line
-
-    let lightbox = document.getElementById("lightbox");
-    let lightboxImg = document.getElementById("lightbox-img");
-    let lightboxDesc = document.getElementById("lightbox-desc");
-
-    // Assign the correct image and description
-    lightboxImg.src = imageSrc;
-    lightboxImg.alt = description;
-    lightboxDesc.innerText = description;
-
-    lightbox.style.display = "flex";
-}
-
-// Close lightbox
-document.getElementById("close-lightbox").addEventListener("click", function() {
-    document.getElementById("lightbox").style.display = "none";
+        .catch(error => console.error("Error loading images:", error));
 });
