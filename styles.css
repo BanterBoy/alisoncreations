@@ -1,53 +1,56 @@
- body {
-     font-family: 'Montserrat', sans-serif;
-     text-align: center;
-     margin: 0;
-     background: #000;
-     color: #FFD700;
- }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+}
 
- header {
-     padding: 20px;
-     text-align: center;
- }
+.carousel {
+    width: 80%;
+    margin: 20px auto;
+}
 
- .logo {
-     max-width: 150px;
-     margin-bottom: 10px;
- }
+.carousel img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    cursor: pointer;
+}
 
- h1 {
-     font-size: 2.5rem;
-     text-transform: uppercase;
-     color: #FFD700;
-     font-weight: bold;
- }
+.carousel-caption {
+    font-size: 14px;
+    color: #333;
+    margin-top: 5px;
+}
 
- .carousel {
-     width: 80%;
-     margin: auto;
- }
+/* Lightbox Styles */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
- .carousel img {
-     width: 300px;
-     height: 250px;
-     border-radius: 10px;
-     object-fit: cover;
-     cursor: pointer;
-     border: 3px solid #FFD700;
- }
+.lightbox img {
+    max-width: 90%;
+    max-height: 80%;
+}
 
- .slick-prev,
- .slick-next {
-     font-size: 24px;
-     color: #FFD700;
- }
+.lightbox-caption {
+    color: white;
+    margin-top: 10px;
+}
 
- .lightbox {
-     background: rgba(0, 0, 0, 0.9);
- }
-
- .lightbox img {
-     border: 3px solid #FFD700;
-     border-radius: 10px;
- }
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
