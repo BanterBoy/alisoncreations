@@ -26,19 +26,29 @@ jobs:
       - name: Generate images.json
         run: |
           echo "[" > images.json
+          file_count=0
           for file in resources/*.jpg; do
-            filename=$(basename "$file")
-            title="${filename%.*}"
+            if [ -f "$file" ]; then
+              file_count=$((file_count+1))
+              filename=$(basename "$file")
+              title="${filename%.*}"
 
-            # Fetch description from descriptions.json, default to "No description available."
-            description=$(jq -r --arg FILE "$filename" '.[$FILE] // "No description available."' descriptions.json)
+              # Fetch description from descriptions.json, default to "No description available."
+              description=$(jq -r --arg FILE "$filename" '.[$FILE] // "No description available."' descriptions.json)
 
-            echo "  {" >> images.json
-            echo "    \"filename\": \"$filename\"," >> images.json
-            echo "    \"title\": \"$title\"," >> images.json
-            echo "    \"description\": \"$description\"" >> images.json
-            echo "  }," >> images.json
+              echo "  {" >> images.json
+              echo "    \"filename\": \"$filename\"," >> images.json
+              echo "    \"title\": \"$title\"," >> images.json
+              echo "    \"description\": \"$description\"" >> images.json
+              echo "  }," >> images.json
+            fi
           done
+
+          if [ $file_count -eq 0 ]; then
+            echo "Error: No images found in resources/ folder. Workflow will fail." >&2
+            exit 1
+          fi
+
           sed -i '$ s/,$//' images.json  # Remove trailing comma
           echo "]" >> images.json
 
