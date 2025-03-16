@@ -1,56 +1,41 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const carousel = document.querySelector(".carousel");
-
-    if (!carousel) {
-        console.error("Error: '.carousel' element not found in the HTML!");
-        return;
-    }
-
-    fetch("/images.json")  // Ensure it's in the root
-        .then(response => response.json())
-        .then(images => {
-            if (!Array.isArray(images) || images.length === 0) {
-                throw new Error("Invalid or empty JSON format");
-            }
-
-            images.forEach(image => {
-                const imgElement = document.createElement("img");
-                imgElement.src = image.src;
-                imgElement.alt = image.description;
-                imgElement.classList.add("carousel-image");
-                imgElement.addEventListener("click", () => openLightbox(image.src));
-
-                carousel.appendChild(imgElement);
+$(document).ready(function () {
+    $.getJSON("images.json")
+        .done(function (data) {
+            let carousel = $(".carousel");
+            data.forEach(image => {
+                let imgElement = `<div><img src="${image.src}" alt="${image.description}" class="carousel-image"></div>`;
+                carousel.append(imgElement);
             });
 
-            // Initialize Slick Carousel AFTER images are added
-            $(".carousel").slick({
+            // Initialize Slick Carousel
+            carousel.slick({
                 dots: true,
                 infinite: true,
                 speed: 300,
-                slidesToShow: 1,
-                adaptiveHeight: true
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+
+            // Lightbox functionality
+            $(".carousel-image").on("click", function () {
+                let src = $(this).attr("src");
+                $("#lightbox-img").attr("src", src);
+                $("#lightbox").fadeIn();
+            });
+
+            $(".close").on("click", function () {
+                $("#lightbox").fadeOut();
             });
         })
-        .catch(error => {
-            console.error("Error loading images:", error);
+        .fail(function () {
+            console.error("Error loading images.json");
         });
-
-    function openLightbox(imageSrc) {
-        const lightbox = document.querySelector(".lightbox");
-        const lightboxImg = document.querySelector(".lightbox img");
-
-        if (!lightbox || !lightboxImg) {
-            console.error("Error: Lightbox elements not found in the HTML!");
-            return;
-        }
-
-        lightboxImg.src = imageSrc;
-        lightbox.style.display = "flex";
-    }
-
-    // Close Lightbox
-    document.querySelector(".lightbox .close").addEventListener("click", function () {
-        document.querySelector(".lightbox").style.display = "none";
-    });
 });
