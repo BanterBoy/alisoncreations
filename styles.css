@@ -1,4 +1,4 @@
-/* General Styles */
+/* ✅ Dark Theme */
 body {
     background-color: black;
     color: white;
@@ -6,35 +6,32 @@ body {
     text-align: center;
 }
 
-/* Logo */
+/* ✅ Logo */
 .logo {
-    width: 200px;
+    width: 150px;
     margin: 20px auto;
     display: block;
 }
 
-/* Carousel Container */
+/* ✅ Carousel Styling */
 .carousel-container {
     width: 80%;
     margin: auto;
     padding: 20px;
 }
 
-/* Slick Image Styling */
-.slick-slide img {
-    width: 80%;
+.carousel img {
+    width: 100%;
     height: auto;
     border-radius: 8px;
     cursor: pointer;
-    margin: auto;
 }
 
-/* Slick Navigation */
+/* ✅ Navigation Buttons */
 .slick-prev,
 .slick-next {
     font-size: 30px;
     color: gold !important;
-    z-index: 10;
 }
 
 .slick-prev:hover,
