@@ -6,20 +6,24 @@ body {
     text-align: center;
 }
 
-/* Logo */
+/* Header */
+.header {
+    margin: 20px;
+}
+
 .logo {
-    width: 200px;
-    margin: 20px auto;
+    width: 150px;
     display: block;
+    margin: 0 auto;
 }
 
 /* Carousel */
-.carousel {
+.carousel-container {
     width: 80%;
     margin: auto;
+    padding: 20px;
 }
 
-/* Carousel Images */
 .carousel img {
     width: 100%;
     height: auto;
@@ -32,7 +36,6 @@ body {
 .slick-next {
     font-size: 30px;
     color: gold !important;
-    z-index: 10;
 }
 
 .slick-prev:hover,
@@ -49,7 +52,7 @@ body {
 }
 
 /* Lightbox */
-#lightbox {
+.lightbox {
     display: none;
     position: fixed;
     top: 0;
@@ -63,12 +66,12 @@ body {
     flex-direction: column;
 }
 
-#lightbox img {
+.lightbox img {
     max-width: 90%;
     max-height: 90%;
 }
 
-#lightbox .close {
+.lightbox .close {
     position: absolute;
     top: 10px;
     right: 20px;
