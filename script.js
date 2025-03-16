@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("🚀 Script Loaded: Running DOMContentLoaded Event");
+    console.log("🚀 DOMContentLoaded: Script Loaded");
 
     const gallery = document.getElementById("gallery");
     if (!gallery) {
-        console.error("❌ Error: No element with ID 'gallery' found.");
+        console.error("❌ Error: Element with ID 'gallery' not found.");
         return;
     }
 
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const lightboxImg = document.getElementById("lightbox-img");
     const lightboxCaption = document.getElementById("lightbox-caption");
 
-    fetch('/images.json')  // Make sure the file is at the root
+    fetch('/images.json')  // Make sure this is in the root directory
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -19,46 +19,44 @@ document.addEventListener("DOMContentLoaded", function () {
             return response.json();
         })
         .then(images => {
-            console.log("✅ Images loaded successfully:", images);
+            console.log("✅ Images Loaded:", images);
 
-            // Generate HTML dynamically
-            let imagesHTML = images.map(img => {
-                if (!img.src) {
-                    console.warn("⚠️ Skipping an image because 'src' is missing:", img);
-                    return "";
-                }
-                return `
-                    <div class="carousel-item">
-                        <img src="/${decodeURIComponent(img.src)}" alt="${img.description || "Image"}" 
-                             class="gallery-item" onclick="openLightbox('${img.src}', '${img.description || "Image"}')">
-                    </div>
-                `;
-            }).join("");
-
-            // Inject into gallery
-            gallery.innerHTML = imagesHTML;
-
-            // Initialize Slick Carousel AFTER images are loaded
-            if (typeof $ !== "undefined" && $.fn.slick) {
-                console.log("🎠 Initializing Slick Carousel...");
-                $("#gallery").slick({
-                    dots: true,
-                    infinite: true,
-                    speed: 500,
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    adaptiveHeight: true
-                });
-            } else {
-                console.error("❌ Error: Slick Carousel is not loaded.");
+            if (!Array.isArray(images) || images.length === 0) {
+                console.error("❌ Error: `images.json` is empty or malformed.");
+                return;
             }
+
+            // Build the image carousel HTML
+            gallery.innerHTML = images.map(img => `
+                <div>
+                    <img src="${img.src}" alt="${img.description || 'Image'}"
+                         class="gallery-item" onclick="openLightbox('${img.src}', '${img.description || 'Image'}')">
+                </div>
+            `).join("");
+
+            // Wait for DOM update, then initialize Slick
+            setTimeout(() => {
+                if (typeof $ !== "undefined" && $.fn.slick) {
+                    console.log("🎠 Initializing Slick Carousel...");
+                    $("#gallery").slick({
+                        dots: true,
+                        infinite: true,
+                        speed: 500,
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        adaptiveHeight: true
+                    });
+                } else {
+                    console.error("❌ Slick Carousel is not loaded. Check if jQuery and Slick are properly included.");
+                }
+            }, 100);
         })
         .catch(error => console.error("❌ Error loading images:", error));
 
     // Lightbox Function
     window.openLightbox = function (src, caption) {
         if (!lightbox || !lightboxImg || !lightboxCaption) {
-            console.error("❌ Error: Lightbox elements are missing.");
+            console.error("❌ Lightbox elements missing.");
             return;
         }
         lightbox.style.display = "block";
