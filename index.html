@@ -5,31 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alison Resin Creations</title>
-    <link rel="stylesheet" href="style.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css" />
+
+    <!-- jQuery and Slick JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
 </head>
 
 <body>
 
-    <div class="header">
-        <img src="logo.png" alt="Alison Resin Creations" class="logo">
-        <h1>Alison Resin Creations</h1>
-        <p>Handmade resin artwork and crafts</p>
-    </div>
+    <!-- Logo -->
+    <img src="logo.png" class="logo" alt="Alison Resin Creations">
 
+    <!-- Business Name -->
+    <h1>Alison Resin Creations</h1>
+    <p>Handmade resin artwork and crafts</p>
+
+    <!-- Carousel -->
     <div class="carousel-container">
-        <div class="carousel" id="gallery"></div>
+        <div id="gallery" class="carousel"></div>
     </div>
 
+    <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
         <span class="close">&times;</span>
         <img id="lightbox-img" src="" alt="">
         <p id="lightbox-caption"></p>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+    <!-- Script -->
     <script src="script.js"></script>
 
 </body>
