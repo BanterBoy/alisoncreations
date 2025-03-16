@@ -33,24 +33,19 @@ body {
 .slick-next {
     font-size: 30px;
     color: gold !important;
-    /* Make arrows gold */
-    z-index: 10;
 }
 
 .slick-prev:hover,
 .slick-next:hover {
     color: white !important;
-    /* Change on hover */
 }
 
 .slick-dots li button:before {
     color: gold !important;
-    /* Make dots gold */
 }
 
 .slick-dots li.slick-active button:before {
     color: white !important;
-    /* Active dot is white */
 }
 
 /* Lightbox */
