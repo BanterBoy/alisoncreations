@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    fetch("/images.json")
+    fetch("/images.json")  // Ensure it's in the root
         .then(response => response.json())
         .then(images => {
-            if (!Array.isArray(images)) {
-                throw new Error("Invalid JSON format");
+            if (!Array.isArray(images) || images.length === 0) {
+                throw new Error("Invalid or empty JSON format");
             }
 
             images.forEach(image => {
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 carousel.appendChild(imgElement);
             });
 
-            // Initialize Slick Carousel
+            // Initialize Slick Carousel AFTER images are added
             $(".carousel").slick({
                 dots: true,
                 infinite: true,
@@ -35,23 +35,22 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => {
             console.error("Error loading images:", error);
         });
-});
 
+    function openLightbox(imageSrc) {
+        const lightbox = document.querySelector(".lightbox");
+        const lightboxImg = document.querySelector(".lightbox img");
 
-// Lightbox function
-function openLightbox(src) {
-    const lightbox = document.querySelector(".lightbox");
-    const lightboxImg = document.querySelector(".lightbox img");
-    
-    if (lightbox && lightboxImg) {
-        lightboxImg.src = src;
+        if (!lightbox || !lightboxImg) {
+            console.error("Error: Lightbox elements not found in the HTML!");
+            return;
+        }
+
+        lightboxImg.src = imageSrc;
         lightbox.style.display = "flex";
-    } else {
-        console.error("Lightbox elements not found");
     }
-}
 
-// Close Lightbox
-document.querySelector(".lightbox .close").addEventListener("click", function () {
-    document.querySelector(".lightbox").style.display = "none";
+    // Close Lightbox
+    document.querySelector(".lightbox .close").addEventListener("click", function () {
+        document.querySelector(".lightbox").style.display = "none";
+    });
 });
