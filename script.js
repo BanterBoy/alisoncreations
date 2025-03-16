@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("DOM fully loaded. Initializing script...");
+    console.log("✅ DOM fully loaded. Initializing script...");
 
     const gallery = document.getElementById("gallery");
 
