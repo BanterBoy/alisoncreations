@@ -6,27 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alison Resin Creations</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
 </head>
 
 <body>
 
-    <img src="logo.png" class="logo" alt="Alison Resin Creations">
+    <div class="logo-container">
+        <img src="logo.png" alt="Alison Resin Creations Logo" class="logo">
+    </div>
 
     <h1>Alison Resin Creations</h1>
     <p>Handmade resin artwork and crafts</p>
 
-    <div class="carousel"></div> <!-- Ensure this exists -->
-
-    <div class="lightbox">
-        <span class="close">&times;</span>
-        <img src="" alt="Large Image">
+    <div class="carousel-container">
+        <div class="carousel"></div> <!-- Images will be loaded here dynamically -->
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
-    <script src="script.js"></script>
+    <!-- Lightbox for Enlarged Images -->
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img id="lightbox-img" src="" alt="Large Image">
+    </div>
+
+    <!-- JS moved to bottom for proper loading -->
+    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script defer src="script.js"></script>
+
 </body>
 
 </html>
