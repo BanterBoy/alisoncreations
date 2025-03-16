@@ -11,13 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const lightboxImg = document.getElementById("lightbox-img");
     const lightboxCaption = document.getElementById("lightbox-caption");
 
-    fetch('/images.json')  // Root folder
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
+    fetch('/images.json') // Load images.json from the root
+        .then(response => response.json())
         .then(images => {
             console.log("✅ Images Loaded:", images);
 
@@ -26,10 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            // Make sure gallery starts empty
             gallery.innerHTML = "";
 
-            // Insert images into the carousel
             images.forEach(img => {
                 const div = document.createElement("div");
                 const imgElement = document.createElement("img");
@@ -37,14 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 imgElement.alt = img.description || "Image";
                 imgElement.classList.add("gallery-item");
 
-                // Click to open lightbox
                 imgElement.onclick = () => openLightbox(imgElement.src, imgElement.alt);
 
                 div.appendChild(imgElement);
                 gallery.appendChild(div);
             });
 
-            // Initialize Slick after images are added
+            // Initialize Slick Carousel after images are loaded
             setTimeout(() => {
                 if (typeof $ !== "undefined" && $.fn.slick) {
                     console.log("🎠 Initializing Slick Carousel...");
@@ -57,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         adaptiveHeight: true
                     });
                 } else {
-                    console.error("❌ Slick Carousel is not loaded. Check if jQuery and Slick are properly included.");
+                    console.error("❌ Slick Carousel is not loading. Check if jQuery and Slick are properly included.");
                 }
             }, 100);
         })

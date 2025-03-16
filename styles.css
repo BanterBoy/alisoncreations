@@ -6,13 +6,28 @@ body {
     text-align: center;
 }
 
-/* Gallery/Carousel */
+/* Logo */
+.logo {
+    width: 200px;
+    margin: 20px auto;
+    display: block;
+}
+
+/* Carousel */
 .carousel {
     width: 80%;
     margin: auto;
 }
 
-/* Slick Styling */
+/* Carousel Images */
+.carousel img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Slick Navigation */
 .slick-prev,
 .slick-next {
     font-size: 30px;
@@ -34,7 +49,7 @@ body {
 }
 
 /* Lightbox */
-.lightbox {
+#lightbox {
     display: none;
     position: fixed;
     top: 0;
@@ -48,12 +63,12 @@ body {
     flex-direction: column;
 }
 
-.lightbox img {
+#lightbox img {
     max-width: 90%;
     max-height: 90%;
 }
 
-.lightbox .close {
+#lightbox .close {
     position: absolute;
     top: 10px;
     right: 20px;
