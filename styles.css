@@ -1,25 +1,28 @@
-/* ✅ Dark Theme */
+/* General Styles */
 body {
     background-color: black;
     color: white;
     font-family: Arial, sans-serif;
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
-/* ✅ Logo */
+/* Logo */
 .logo {
-    width: 150px;
+    width: 200px;
     margin: 20px auto;
     display: block;
 }
 
-/* ✅ Carousel Styling */
-.carousel-container {
+/* Carousel */
+.carousel {
     width: 80%;
     margin: auto;
     padding: 20px;
 }
 
+/* Carousel Images */
 .carousel img {
     width: 100%;
     height: auto;
@@ -27,7 +30,7 @@ body {
     cursor: pointer;
 }
 
-/* ✅ Navigation Buttons */
+/* Slick Customization */
 .slick-prev,
 .slick-next {
     font-size: 30px;
