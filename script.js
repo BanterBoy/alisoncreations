@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     fetch("images.json")
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error("Network response was not ok");
+            return response.json();
+        })
         .then(images => {
             const carousel = document.querySelector(".carousel");
 
@@ -10,15 +13,23 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             images.forEach(img => {
+                // Create slide container
                 let slide = document.createElement("div");
+
+                // Create image element
                 let imageElement = document.createElement("img");
                 imageElement.src = img.src;
-                imageAlt = img.description || 'Artwork';
-                imageDescription = document.createElement("p");
-                imageDescription = document.createTextNode(img.description);
+                imageElement.alt = img.description || 'Artwork';
 
-                slide.appendChild(image);
-                slide.appendChild(slide);
+                // Create description element
+                let descriptionElement = document.createElement("p");
+                descriptionElement.textContent = img.description || '';
+
+                // Append image and description to slide
+                slide.appendChild(imageElement);
+                slide.appendChild(descriptionElement);
+
+                // Append slide to carousel
                 carousel.appendChild(slide);
             });
 
