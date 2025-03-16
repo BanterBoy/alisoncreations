@@ -1,12 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
+    console.log("DOM fully loaded. Initializing script...");
+
     const gallery = document.getElementById("gallery");
 
     if (!gallery) {
-        console.error("Error: 'gallery' element not found.");
+        console.error("❌ ERROR: 'gallery' element not found.");
         return;
     }
 
-    // Load images from images.json
+    console.log("✅ Found gallery element, loading images...");
+
     fetch("/images.json")
         .then(response => {
             if (!response.ok) throw new Error("Failed to fetch images.json");
@@ -17,20 +20,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 throw new Error("Invalid JSON format: expected an array.");
             }
 
+            console.log(`✅ Loaded ${images.length} images.`);
+
             let carouselHtml = "";
             images.forEach(img => {
+                let imageSrc = `/${decodeURIComponent(img.src)}`;
+                let imageDesc = img.description || "Image";
+
                 carouselHtml += `
                     <div>
-                        <a href="/${decodeURIComponent(img.src)}">
-                            <img src="/${decodeURIComponent(img.src)}" 
-                                 alt="${img.description || 'Image'}">
+                        <a href="${imageSrc}">
+                            <img src="${imageSrc}" alt="${imageDesc}">
                         </a>
                     </div>`;
             });
 
             gallery.innerHTML = carouselHtml;
 
-            // Initialize Slick Carousel WITH LIGHTBOX SUPPORT
+            console.log("✅ Images added to DOM. Initializing Slick...");
+
             $(".carousel").slick({
                 dots: true,
                 infinite: true,
@@ -41,9 +49,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 autoplaySpeed: 3000,
                 arrows: true
             }).slickLightbox({
-                itemSelector: "a", // Enables lightbox on image click
+                itemSelector: "a",
                 navigateByKeyboard: true
             });
+
+            console.log("🚀 Slick Carousel initialized successfully!");
+
         })
-        .catch(error => console.error("Error loading images:", error));
+        .catch(error => console.error("❌ Error loading images:", error));
 });
