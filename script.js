@@ -1,25 +1,28 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Load images from images.json
     fetch("images.json")
         .then(response => response.json())
         .then(images => {
-            let carousel = document.querySelector(".carousel");
+            const carousel = document.querySelector(".carousel");
 
             if (!carousel) {
                 console.error("Carousel element not found!");
                 return;
             }
 
-            // Clear any existing content
-            carousel.innerHTML = "";
-
             images.forEach(img => {
-                let imgElement = document.createElement("div");
-                imgElement.innerHTML = `<img src="${img.src}" alt="${img.description || 'Image'}">`;
-                carousel.appendChild(imgElement);
+                let slide = document.createElement("div");
+                let imageElement = document.createElement("img");
+                imageElement.src = img.src;
+                imageAlt = img.description || 'Artwork';
+                imageDescription = document.createElement("p");
+                imageDescription = document.createTextNode(img.description);
+
+                slide.appendChild(image);
+                slide.appendChild(slide);
+                carousel.appendChild(slide);
             });
 
-            // Initialize Slick
+            // Initialize Slick Carousel
             $(".carousel").slick({
                 dots: true,
                 infinite: true,
@@ -27,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 slidesToShow: 1,
                 adaptiveHeight: true
             });
-
         })
         .catch(error => console.error("Error loading images:", error));
 });

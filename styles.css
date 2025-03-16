@@ -8,21 +8,19 @@ body {
     padding: 0;
 }
 
-/* Logo */
-.logo {
-    width: 200px;
-    margin: 20px auto;
-    display: block;
-}
-
-/* Carousel */
-.carousel {
-    width: 80%;
-    margin: auto;
+/* Header Styling */
+header {
     padding: 20px;
 }
 
-/* Carousel Images */
+/* Carousel Container */
+.carousel {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+/* Carousel Image Styling */
 .carousel img {
     width: 100%;
     height: auto;
@@ -30,7 +28,7 @@ body {
     cursor: pointer;
 }
 
-/* Slick Customization */
+/* Slick Carousel Controls Styling */
 .slick-prev,
 .slick-next {
     font-size: 30px;
