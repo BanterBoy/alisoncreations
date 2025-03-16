@@ -1,41 +1,47 @@
-$(document).ready(function () {
-    $.getJSON("images.json")
-        .done(function (data) {
-            let carousel = $(".carousel");
-            data.forEach(image => {
-                let imgElement = `<div><img src="${image.src}" alt="${image.description}" class="carousel-image"></div>`;
-                carousel.append(imgElement);
+document.addEventListener("DOMContentLoaded", function () {
+    const gallery = document.querySelector(".carousel");  // Ensure it's found
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxCaption = document.getElementById("lightbox-caption");
+
+    if (!gallery) {
+        console.error("Gallery element not found! Check your HTML.");
+        return;
+    }
+
+    fetch('images.json')
+        .then(response => response.json())
+        .then(images => {
+            images.forEach(img => {
+                const imgElement = document.createElement("img");
+                imgElement.src = `https://alisoncreations.co.uk/${decodeURIComponent(img.src)}`;
+                imgElement.alt = img.description || "Image";
+                imgElement.classList.add("gallery-item");
+
+                imgElement.onclick = () => openLightbox(imgElement.src, imgElement.alt);
+                gallery.appendChild(imgElement);
             });
 
-            // Initialize Slick Carousel
-            carousel.slick({
+            // Initialize Slick Carousel AFTER images are loaded
+            $(gallery).slick({
                 dots: true,
                 infinite: true,
-                speed: 300,
+                speed: 500,
                 slidesToShow: 3,
                 slidesToScroll: 1,
-                responsive: [
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 1
-                        }
-                    }
-                ]
+                adaptiveHeight: true
             });
 
-            // Lightbox functionality
-            $(".carousel-image").on("click", function () {
-                let src = $(this).attr("src");
-                $("#lightbox-img").attr("src", src);
-                $("#lightbox").fadeIn();
-            });
-
-            $(".close").on("click", function () {
-                $("#lightbox").fadeOut();
-            });
         })
-        .fail(function () {
-            console.error("Error loading images.json");
-        });
+        .catch(error => console.error("Error loading images:", error));
+
+    function openLightbox(src, caption) {
+        lightbox.style.display = "block";
+        lightboxImg.src = src;
+        lightboxCaption.textContent = caption;
+    }
+
+    document.querySelector(".close").addEventListener("click", function () {
+        lightbox.style.display = "none";
+    });
 });
