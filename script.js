@@ -1,18 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("/images.json") // Corrected path to root
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
+    const carousel = document.querySelector(".carousel");
+
+    if (!carousel) {
+        console.error("Error: '.carousel' element not found in the HTML!");
+        return;
+    }
+
+    fetch("/images.json")
+        .then(response => response.json())
         .then(images => {
             if (!Array.isArray(images)) {
                 throw new Error("Invalid JSON format");
-            }
-            const carousel = document.querySelector(".carousel");
-            if (!carousel) {
-                throw new Error("Carousel element not found");
             }
 
             images.forEach(image => {
@@ -25,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 carousel.appendChild(imgElement);
             });
 
-            // Initialize Slick carousel after images are loaded
+            // Initialize Slick Carousel
             $(".carousel").slick({
                 dots: true,
                 infinite: true,
@@ -38,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("Error loading images:", error);
         });
 });
+
 
 // Lightbox function
 function openLightbox(src) {
