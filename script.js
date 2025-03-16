@@ -1,8 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     const gallery = document.getElementById("gallery");
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
-    const lightboxCaption = document.getElementById("lightbox-caption");
 
     if (!gallery) {
         console.error("Error: 'gallery' element not found.");
@@ -24,16 +21,16 @@ document.addEventListener("DOMContentLoaded", function () {
             images.forEach(img => {
                 carouselHtml += `
                     <div>
-                        <img src="/${decodeURIComponent(img.src)}" 
-                             alt="${img.description || 'Image'}"
-                             class="gallery-item" 
-                             onclick="openLightbox(this.src, this.alt)">
+                        <a href="/${decodeURIComponent(img.src)}">
+                            <img src="/${decodeURIComponent(img.src)}" 
+                                 alt="${img.description || 'Image'}">
+                        </a>
                     </div>`;
             });
 
             gallery.innerHTML = carouselHtml;
 
-            // Initialize Slick Carousel after images are loaded
+            // Initialize Slick Carousel WITH LIGHTBOX SUPPORT
             $(".carousel").slick({
                 dots: true,
                 infinite: true,
@@ -43,19 +40,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 autoplay: true,
                 autoplaySpeed: 3000,
                 arrows: true
+            }).slickLightbox({
+                itemSelector: "a", // Enables lightbox on image click
+                navigateByKeyboard: true
             });
         })
         .catch(error => console.error("Error loading images:", error));
-
-    // Open Lightbox
-    window.openLightbox = function (src, caption) {
-        lightbox.style.display = "flex";
-        lightboxImg.src = src;
-        lightboxCaption.textContent = caption;
-    };
-
-    // Close Lightbox
-    document.querySelector(".close").addEventListener("click", function () {
-        lightbox.style.display = "none";
-    });
 });
