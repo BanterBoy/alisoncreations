@@ -1,60 +1,33 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("✅ DOM fully loaded. Initializing script...");
-
-    const gallery = document.getElementById("gallery");
-
-    if (!gallery) {
-        console.error("❌ ERROR: 'gallery' element not found.");
-        return;
-    }
-
-    console.log("✅ Found gallery element, loading images...");
-
-    fetch("/images.json")
-        .then(response => {
-            if (!response.ok) throw new Error("Failed to fetch images.json");
-            return response.json();
-        })
+    // Load images from images.json
+    fetch("images.json")
+        .then(response => response.json())
         .then(images => {
-            if (!Array.isArray(images)) {
-                throw new Error("Invalid JSON format: expected an array.");
+            let carousel = document.querySelector(".carousel");
+
+            if (!carousel) {
+                console.error("Carousel element not found!");
+                return;
             }
 
-            console.log(`✅ Loaded ${images.length} images.`);
+            // Clear any existing content
+            carousel.innerHTML = "";
 
-            let carouselHtml = "";
             images.forEach(img => {
-                let imageSrc = `/${decodeURIComponent(img.src)}`;
-                let imageDesc = img.description || "Image";
-
-                carouselHtml += `
-                    <div>
-                        <a href="${imageSrc}">
-                            <img src="${imageSrc}" alt="${imageDesc}">
-                        </a>
-                    </div>`;
+                let imgElement = document.createElement("div");
+                imgElement.innerHTML = `<img src="${img.src}" alt="${img.description || 'Image'}">`;
+                carousel.appendChild(imgElement);
             });
 
-            gallery.innerHTML = carouselHtml;
-
-            console.log("✅ Images added to DOM. Initializing Slick...");
-
+            // Initialize Slick
             $(".carousel").slick({
                 dots: true,
                 infinite: true,
-                speed: 500,
+                speed: 300,
                 slidesToShow: 1,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 3000,
-                arrows: true
-            }).slickLightbox({
-                itemSelector: "a",
-                navigateByKeyboard: true
+                adaptiveHeight: true
             });
 
-            console.log("🚀 Slick Carousel initialized successfully!");
-
         })
-        .catch(error => console.error("❌ Error loading images:", error));
+        .catch(error => console.error("Error loading images:", error));
 });
