@@ -20,15 +20,16 @@ body {
     padding: 20px;
 }
 
-/* Carousel Images */
-.carousel img {
-    width: 100%;
+/* Slick Image Styling */
+.slick-slide img {
+    width: 80%;
     height: auto;
     border-radius: 8px;
     cursor: pointer;
+    margin: auto;
 }
 
-/* Slick Navigation Button Styling */
+/* Slick Navigation */
 .slick-prev,
 .slick-next {
     font-size: 30px;
@@ -47,33 +48,4 @@ body {
 
 .slick-dots li.slick-active button:before {
     color: white !important;
-}
-
-/* Lightbox */
-.lightbox {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-}
-
-.lightbox .close {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    color: white;
-    font-size: 30px;
-    cursor: pointer;
 }
