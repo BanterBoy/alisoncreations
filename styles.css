@@ -6,24 +6,21 @@ body {
     text-align: center;
 }
 
-/* Header */
-.header {
-    margin: 20px;
-}
-
+/* Logo */
 .logo {
-    width: 150px;
+    width: 200px;
+    margin: 20px auto;
     display: block;
-    margin: 0 auto;
 }
 
-/* Carousel */
+/* Carousel Container */
 .carousel-container {
     width: 80%;
     margin: auto;
     padding: 20px;
 }
 
+/* Carousel Images */
 .carousel img {
     width: 100%;
     height: auto;
@@ -31,11 +28,12 @@ body {
     cursor: pointer;
 }
 
-/* Slick Navigation */
+/* Slick Navigation Button Styling */
 .slick-prev,
 .slick-next {
     font-size: 30px;
     color: gold !important;
+    z-index: 10;
 }
 
 .slick-prev:hover,
