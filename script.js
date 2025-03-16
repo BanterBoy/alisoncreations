@@ -20,15 +20,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 throw new Error("Invalid JSON format: expected an array.");
             }
 
+            let carouselHtml = "";
             images.forEach(img => {
-                const imgElement = document.createElement("img");
-                imgElement.src = `/${decodeURIComponent(img.src)}`;
-                imgElement.alt = img.description || "Image";
-                imgElement.classList.add("gallery-item");
-
-                imgElement.onclick = () => openLightbox(imgElement.src, imgElement.alt);
-                gallery.appendChild(imgElement);
+                carouselHtml += `
+                    <div>
+                        <img src="/${decodeURIComponent(img.src)}" 
+                             alt="${img.description || 'Image'}"
+                             class="gallery-item" 
+                             onclick="openLightbox(this.src, this.alt)">
+                    </div>`;
             });
+
+            gallery.innerHTML = carouselHtml;
 
             // Initialize Slick Carousel after images are loaded
             $(".carousel").slick({
@@ -45,11 +48,11 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error("Error loading images:", error));
 
     // Open Lightbox
-    function openLightbox(src, caption) {
+    window.openLightbox = function (src, caption) {
         lightbox.style.display = "flex";
         lightboxImg.src = src;
         lightboxCaption.textContent = caption;
-    }
+    };
 
     // Close Lightbox
     document.querySelector(".close").addEventListener("click", function () {
