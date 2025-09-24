@@ -1,0 +1,44 @@
+<div class="footer-inner">
+  <div class="footer-brand">
+    <strong>{{ shop.name }}</strong>
+    <p>{{ section.settings.tagline }}</p>
+    <p><a href="mailto:{{ section.settings.contact_email }}">{{ section.settings.contact_email }}</a></p>
+  </div>
+  <nav class="footer-nav">
+    <ul>
+      {%- assign menu = section.settings.footer_menu | default: 'footer' -%}
+      {%- for link in linklists[menu].links -%}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+  <div class="footer-meta">
+    <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Hand-poured resin creations"
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Contact email",
+      "default": "hello@example.com"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Footer menu",
+      "default": "footer"
+    }
+  ]
+}
+{% endschema %}

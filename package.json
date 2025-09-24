@@ -1,0 +1,33 @@
+{
+  "name": "arc-resin-creations",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint scripts --ext .ts",
+    "dev:theme": "shopify theme dev",
+    "scan": "tsx scripts/node/scan-assets.ts",
+    "mute:videos": "tsx scripts/node/mute-videos.ts",
+    "sync:assets": "tsx scripts/node/upload-assets.ts",
+    "sync:products": "tsx scripts/node/create-products.ts",
+    "sync:collections": "tsx scripts/node/build-collections.ts",
+    "sync:menus": "tsx scripts/node/sync-menus.ts",
+    "sync:all": "tsx scripts/node/sync-all.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "fast-glob": "^3.3.2",
+    "node-html-parser": "^6.1.13",
+    "p-limit": "^5.0.0",
+    "undici": "^6.19.8",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.8.5",
+    "@typescript-eslint/eslint-plugin": "^8.10.0",
+    "@typescript-eslint/parser": "^8.10.0",
+    "eslint": "^9.14.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.3"
+  }
+}

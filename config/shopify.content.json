@@ -1,0 +1,79 @@
+{
+  "mediaRoots": {
+    "products": "resources/images",
+    "videos": "resources/videos",
+    "marketing": "resources/images",
+    "mutedOutput": "build/videos-muted"
+  },
+  "tracing": {
+    "migrationLog": "migration.log",
+    "outputDir": "out",
+    "productsJson": "out/products.json",
+    "variantsJson": "out/variants.json",
+    "productsCsv": "out/products.csv"
+  },
+  "productDefaults": {
+    "vendor": "Arc Resin Creations",
+    "status": "ACTIVE",
+    "productType": "Resin Art",
+    "tags": ["Arc Resin Creations"],
+    "options": ["Style", "Color", "Size"],
+    "templateSuffix": "",
+    "seoSuffix": " | Arc Resin Creations",
+    "defaultPrice": "45.00"
+  },
+  "naming": {
+    "splitDelimiters": [" - ", " -", "- ", "-", "_"],
+    "ignoredTokens": ["set", "mix"],
+    "colorVocabulary": [
+      "white", "pink", "blue", "green", "yellow", "silver", "gold", "red", "purple", "mauve", "orange", "jade", "cream", "clear"
+    ],
+    "sizeVocabulary": ["small", "medium", "large", "mini", "tall", "short"],
+    "titleCase": true
+  },
+  "collections": {
+    "manual": [
+      {
+        "handle": "featured",
+        "title": "Featured Creations",
+        "description": "Hand-picked resin art pieces updated by automation.",
+        "tags": ["featured"]
+      }
+    ],
+    "smart": [
+      {
+        "title": "Resin Lights",
+        "handle": "resin-lights",
+        "conditions": [
+          { "column": "TAG", "relation": "CONTAINS", "condition": "light" }
+        ],
+        "disjunctive": false,
+        "sortOrder": "BEST_SELLING"
+      },
+      {
+        "title": "Seasonal",
+        "handle": "seasonal",
+        "conditions": [
+          { "column": "TAG", "relation": "CONTAINS", "condition": "christmas" },
+          { "column": "TAG", "relation": "CONTAINS", "condition": "holiday" }
+        ],
+        "disjunctive": true,
+        "sortOrder": "MANUAL"
+      }
+    ],
+    "menuFeatured": ["featured", "resin-lights", "seasonal"]
+  },
+  "menus": {
+    "main": [
+      { "title": "Home", "type": "FRONT_PAGE" },
+      { "title": "Shop", "type": "ALL" },
+      { "title": "Collections", "type": "COLLECTION_LIST", "items": "auto" },
+      { "title": "Contact", "type": "PAGE", "handle": "contact" }
+    ],
+    "footer": [
+      { "title": "Shipping Policy", "type": "PAGE", "handle": "shipping" },
+      { "title": "Returns", "type": "PAGE", "handle": "returns" },
+      { "title": "Privacy", "type": "PAGE", "handle": "privacy" }
+    ]
+  }
+}
