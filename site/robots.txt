@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://banterboy.github.io/alisoncreations/site/sitemap.xml

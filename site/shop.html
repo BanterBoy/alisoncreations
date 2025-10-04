@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop | Alison Resin Creations</title>
+  <meta name="description" content="Shop Alison Resin Creations handmade resin art. Filter by colour, theme, or tag to find the perfect gift.">
+  <meta property="og:title" content="Shop | Alison Resin Creations">
+  <meta property="og:description" content="Hand-poured resin homes, ornaments, keepsakes, and gifts from Alison Resin Creations.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://banterboy.github.io/alisoncreations/site/shop.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="stylesheet" href="assets/css/arc.css">
+  <script type="application/json" id="arc-config">
+  {
+    "domain": "{{SHOPIFY_STORE_DOMAIN}}",
+    "storefrontToken": "{{SHOPIFY_STOREFRONT_TOKEN}}",
+    "apiVersion": "{{SHOPIFY_API_VERSION}}"
+  }
+  </script>
+  <script defer src="assets/js/shopify.js"></script>
+  <script defer src="assets/js/ui.js"></script>
+</head>
+<body data-page="shop">
+  <header>
+    <div class="arc-container">
+      <nav class="navbar">
+        <a class="navbar-logo" href="index.html">
+          <img src="images/logo.png" alt="Alison Resin Creations logo">
+          <span>Alison Resin Creations</span>
+        </a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="about.html">About</a>
+          <a href="faq.html">How We Sell</a>
+          <a href="terms.html">Terms</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="contact.html">Contact</a>
+          <a href="cart.html">Cart (<span data-cart-count>0</span>)</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <div class="arc-container">
+        <h1>Shop Resin Art</h1>
+        <p class="lead">Use search, colour, and tag filters to narrow down hand-poured resin pieces. Prices update once Shopify data syncs.</p>
+      </div>
+    </section>
+
+    <section class="arc-container section">
+      <div class="filters">
+        <input type="search" placeholder="Search by name or description" data-filter="search">
+        <select data-filter="color">
+          <option value="">All colours</option>
+        </select>
+        <select data-filter="tag">
+          <option value="">All tags</option>
+        </select>
+      </div>
+      <div id="shop-grid" class="grid cards-3"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="arc-container footer-grid">
+      <div>
+        <h4>Shipping &amp; Pickup</h4>
+        <p>Standard dispatch is 5-7 working days. Local collection can be arranged — leave a note at checkout.</p>
+      </div>
+      <div>
+        <h4>Need Help?</h4>
+        <div class="footer-links">
+          <a href="faq.html">How We Sell</a>
+          <a href="contact.html">Contact Alison</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
