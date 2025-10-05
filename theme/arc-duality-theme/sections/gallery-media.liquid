@@ -1,0 +1,110 @@
+<section class="section section--surface" id="GalleryMedia-{{ section.id }}">
+  <div class="wrapper">
+    <div class="section__header">
+      <h2 class="section__title">{{ section.settings.heading }}</h2>
+      {% if section.settings.subheading != blank %}
+        <p class="section__description">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+    <div class="gallery-media-grid">
+      {% for block in section.blocks %}
+        <div class="gallery-media-item" {{ block.shopify_attributes }}>
+          {% case block.type %}
+            {% when 'product' %}
+              {% assign product = block.settings.product %}
+              {% if product %}
+                <a href="{{ product.url }}" class="gallery-media-product">
+                  {% if product.featured_media %}
+                    {% assign gallery_alt = product.featured_media.alt | default: product.title %}
+                    <div class="gallery-media-thumb">
+                      {{ product.featured_media | image_url: width: 640 | image_tag: loading: 'lazy', alt: gallery_alt }}
+                    </div>
+                  {% endif %}
+                  <div class="gallery-media-caption">
+                    <h3>{{ product.title }}</h3>
+                    {% if product.price_varies %}
+                      <p>{{ product.price_min | money }} – {{ product.price_max | money }}</p>
+                    {% else %}
+                      <p>{{ product.price | money }}</p>
+                    {% endif %}
+                  </div>
+                </a>
+              {% endif %}
+            {% when 'video' %}
+              {% render 'media-video', video_url: block.settings.video_url, poster: block.settings.poster, caption: block.settings.caption %}
+          {% endcase %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ARC Gallery Media",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Step Inside the ARC Gallery"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See the luminous glow, suspended blooms, and storybook details that make each resin scene unforgettable."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "text",
+          "id": "video_url",
+          "label": "Video URL",
+          "info": "Supports MP4 URLs or Shopify-hosted video file URLs."
+        },
+        {
+          "type": "image_picker",
+          "id": "poster",
+          "label": "Poster image"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption",
+          "default": "Behind the scenes of a glowing resin village"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "ARC Gallery Media",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "video"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "privacy": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Privacy Policy",
+        "content": "<p>Share how you collect, store, and protect customer information. Update this placeholder text with your official privacy policy.</p>"
+      }
+    }
+  },
+  "order": [
+    "privacy"
+  ]
+}

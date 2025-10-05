@@ -1,0 +1,11 @@
+{% if video_url != blank %}
+  <figure class="video-wrapper">
+    <video controls playsinline preload="metadata" {% if poster %}poster="{{ poster | image_url: width: 1200 }}"{% endif %}>
+      <source src="{{ video_url }}" type="video/mp4">
+      {{ 'snippets.media_video.fallback' | t }}
+    </video>
+    {% if caption %}
+      <figcaption>{{ caption }}</figcaption>
+    {% endif %}
+  </figure>
+{% endif %}

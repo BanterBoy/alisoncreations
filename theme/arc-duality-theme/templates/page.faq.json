@@ -1,0 +1,49 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "content": "<p>Here you'll find details about lead times, custom commissions, care instructions, and more.</p>"
+      }
+    },
+    "faq": {
+      "type": "collapsible-content",
+      "settings": {
+        "heading": "FAQs"
+      },
+      "blocks": {
+        "question-1": {
+          "type": "item",
+          "settings": {
+            "title": "How long does a custom piece take?",
+            "content": "<p>Custom orders usually take 3-4 weeks, allowing time for sketching, layered pours, curing, and finishing details.</p>"
+          }
+        },
+        "question-2": {
+          "type": "item",
+          "settings": {
+            "title": "Do the lights include batteries?",
+            "content": "<p>Yes! Your glowing house scenes arrive with replaceable batteries and simple on/off switches.</p>"
+          }
+        },
+        "question-3": {
+          "type": "item",
+          "settings": {
+            "title": "Can I request a specific quote or colour palette?",
+            "content": "<p>Absolutely—share your ideas via the contact form and Alison will confirm the possibilities.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question-1",
+        "question-2",
+        "question-3"
+      ]
+    }
+  },
+  "order": [
+    "intro",
+    "faq"
+  ]
+}

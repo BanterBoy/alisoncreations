@@ -1,0 +1,63 @@
+<section class="section collection" id="Collection-{{ section.id }}">
+  <div class="wrapper collection__inner">
+    <header class="collection__header">
+      <h1 class="collection__title">{{ collection.title }}</h1>
+      {% if collection.description != blank %}
+        <div class="collection__description">{{ collection.description }}</div>
+      {% endif %}
+    </header>
+
+    {% if collection.all_tags.size > 0 %}
+      <div class="collection__filters">
+        <div class="collection__filter-group">
+          <span class="collection__filter-label">{{ 'sections.main_collection.filter_tags' | t }}</span>
+          <ul>
+            {% for tag in collection.all_tags %}
+              <li>{{ tag | link_to_tag: tag }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% assign has_color_tags = false %}
+        {% for tag in collection.all_tags %}
+          {% assign tag_down = tag | downcase %}
+          {% if tag_down contains 'colour' or tag_down contains 'color' %}
+            {% assign has_color_tags = true %}
+          {% endif %}
+        {% endfor %}
+        {% if has_color_tags %}
+          <div class="collection__filter-group">
+            <span class="collection__filter-label">{{ 'sections.main_collection.filter_colors' | t }}</span>
+            <ul>
+              {% for tag in collection.all_tags %}
+                {% assign tag_down = tag | downcase %}
+                {% if tag_down contains 'colour' or tag_down contains 'color' %}
+                  <li>{{ tag | link_to_tag: tag }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="product-grid">
+      {% for product in collection.products %}
+        {% render 'product-card', product: product, show_swatches: true %}
+      {% else %}
+        <p>{{ 'sections.main_collection.empty' | t }}</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main collection",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Collection"
+    }
+  ]
+}
+{% endschema %}

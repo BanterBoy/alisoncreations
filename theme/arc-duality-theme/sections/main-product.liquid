@@ -1,0 +1,164 @@
+<section class="section product" id="Product-{{ section.id }}">
+  <div class="wrapper product__inner">
+    <div class="product__gallery">
+      {% if product.media.size > 0 %}
+        {% for media in product.media %}
+          <div class="product__media" data-media-type="{{ media.media_type }}">
+            {{ media | media_tag }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <div class="product__details">
+      <h1 class="product__title">{{ product.title }}</h1>
+      <div class="product__price">
+        {% if product.price_varies %}
+          {{ product.price_min | money }} – {{ product.price_max | money }}
+        {% else %}
+          {{ product.price | money }}
+        {% endif %}
+      </div>
+
+      {% if product.metafields.custom.quote != blank %}
+        <blockquote class="product__quote">“{{ product.metafields.custom.quote }}”</blockquote>
+      {% endif %}
+
+      {% form 'product', product, class: 'product__form' %}
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <label for="Option-{{ section.id }}-{{ forloop.index }}">{{ option.name }}</label>
+            <select id="Option-{{ section.id }}-{{ forloop.index }}" name="options[{{ option.name }}]">
+              {% for value in option.values %}
+                <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %}>{{ value }}</option>
+              {% endfor %}
+            </select>
+          {% endfor %}
+        {% endunless %}
+
+        <label for="Quantity-{{ section.id }}" class="visually-hidden">{{ 'products.product.quantity' | t }}</label>
+        <input id="Quantity-{{ section.id }}" type="number" name="quantity" min="1" value="1">
+
+        <button type="submit" name="add" {% unless product.available %}disabled{% endunless %}>
+          {% if product.available %}
+            {{ 'products.product.add_to_cart' | t }}
+          {% else %}
+            {{ 'products.product.sold_out' | t }}
+          {% endif %}
+        </button>
+      {% endform %}
+
+      <div class="product__share">
+        <p>{{ 'sections.main_product.share_label' | t }}</p>
+        <ul>
+          <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ product.url | url_escape }}" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://twitter.com/intent/tweet?url={{ product.url | url_escape }}&text={{ product.title | url_escape }}" target="_blank" rel="noopener">Twitter</a></li>
+          <li><a href="mailto:?subject={{ product.title | url_escape }}&body={{ product.url | url_escape }}">Email</a></li>
+        </ul>
+      </div>
+
+      {% if section.blocks.size > 0 %}
+        <div class="product__extra">
+          {% for block in section.blocks %}
+            <div class="product__extra-block" {{ block.shopify_attributes }}>
+              {% case block.type %}
+                {% when 'video' %}
+                  {% render 'media-video', video_url: block.settings.video_url, poster: block.settings.poster, caption: block.settings.caption %}
+                {% when 'text' %}
+                  <div class="product__text-block">
+                    <h3>{{ block.settings.title }}</h3>
+                    <div>{{ block.settings.content }}</div>
+                  </div>
+                {% when 'collapsible' %}
+                  <details>
+                    <summary>{{ block.settings.title }}</summary>
+                    <div>{{ block.settings.content }}</div>
+                  </details>
+              {% endcase %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main product",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "text",
+          "id": "video_url",
+          "label": "Video URL"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster",
+          "label": "Poster"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Care instructions"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Gently dust with a soft cloth and keep away from direct sunlight to preserve clarity.</p>"
+        }
+      ]
+    },
+    {
+      "type": "collapsible",
+      "name": "Collapsible",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Shipping & returns"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Orders dispatch within 5-7 working days. Contact us for rush arrangements.</p>"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Product details",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "collapsible"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
