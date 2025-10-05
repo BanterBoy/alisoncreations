@@ -1,0 +1,153 @@
+<footer class="footer" role="contentinfo">
+  <div class="wrapper footer__inner">
+    <div class="footer__column">
+      <a href="{{ routes.root_url }}" class="footer__brand">
+        {% if settings.brand_logo != blank %}
+          <img
+            src="{{ settings.brand_logo | image_url: width: 200 }}"
+            alt="{{ 'sections.footer.logo_alt' | t: shop_name: shop.name }}"
+            width="96"
+            height="96"
+            loading="lazy">
+        {% else %}
+          <img
+            src="{{ 'arc-logo.png' | asset_url }}"
+            alt="{{ 'sections.footer.logo_alt' | t: shop_name: shop.name }}"
+            width="96"
+            height="96"
+            loading="lazy">
+        {% endif %}
+      </a>
+      <p>{{ section.settings.brand_blurb }}</p>
+      {% assign has_social = false %}
+      {% for block in section.blocks %}
+        {% if block.type == 'social' and block.settings.url != blank %}
+          {% assign has_social = true %}
+        {% endif %}
+      {% endfor %}
+      {% if has_social %}
+        <div class="footer__socials">
+          {% for block in section.blocks %}
+            {% if block.type == 'social' and block.settings.url != blank %}
+              <a href="{{ block.settings.url }}" target="_blank" rel="noopener" aria-label="{{ block.settings.label }}">
+                {{ block.settings.label }}
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="footer__column">
+      <h3>{{ section.settings.shop_heading }}</h3>
+      <ul>
+        {% if section.settings.shop_menu %}
+          {% for link in section.settings.shop_menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        {% else %}
+          <li><a href="{{ routes.all_products_collection_url }}">{{ 'sections.footer.default_shop' | t }}</a></li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <div class="footer__column">
+      <h3>{{ section.settings.policy_heading }}</h3>
+      <ul>
+        {% if section.settings.policy_menu %}
+          {% for link in section.settings.policy_menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        {% else %}
+          <li><a href="/pages/faq">{{ 'sections.footer.default_faq' | t }}</a></li>
+          <li><a href="/pages/terms">{{ 'sections.footer.default_terms' | t }}</a></li>
+          <li><a href="/pages/privacy">{{ 'sections.footer.default_privacy' | t }}</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+  <div class="wrapper footer__bottom">
+    <small>&copy; {{ 'now' | date: '%Y' }} {{ section.settings.footer_copyright | default: shop.name }}. {{ 'sections.footer.rights' | t }}</small>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "ARC Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "brand_blurb",
+      "label": "Brand blurb",
+      "default": "Alison Resin Creations captures cherished stories in luminous resin art, each piece lovingly poured by hand."
+    },
+    {
+      "type": "text",
+      "id": "shop_heading",
+      "label": "Shop column heading",
+      "default": "Shop Alison Resin Creations"
+    },
+    {
+      "type": "link_list",
+      "id": "shop_menu",
+      "label": "Shop menu"
+    },
+    {
+      "type": "text",
+      "id": "policy_heading",
+      "label": "Policies column heading",
+      "default": "Need to Know"
+    },
+    {
+      "type": "link_list",
+      "id": "policy_menu",
+      "label": "Policy menu"
+    },
+    {
+      "type": "text",
+      "id": "footer_copyright",
+      "label": "Footer copyright text",
+      "default": "Alison Resin Creations"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "social",
+      "name": "Social link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Instagram"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "ARC Footer",
+      "blocks": [
+        {
+          "type": "social",
+          "settings": {
+            "label": "Instagram"
+          }
+        },
+        {
+          "type": "social",
+          "settings": {
+            "label": "Facebook"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

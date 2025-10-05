@@ -1,0 +1,46 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-arc",
+      "settings": {
+        "heading": "Whimsical Resin Worlds, Poured with Heart",
+        "body": "Discover hand-crafted resin keepsakes that shimmer with storybook details, fairy lights, and the warmth of artisan craftsmanship.",
+        "primary_label": "Shop Resin Keepsakes",
+        "primary_link": "/collections/all",
+        "secondary_label": "Visit the Gallery",
+        "secondary_link": "/pages/gallery",
+        "notice": "Limited-edition spring villages now pouring!"
+      }
+    },
+    "featured": {
+      "type": "featured-arc-grid",
+      "settings": {
+        "heading": "Collector Favourites",
+        "subheading": "A curated look at glowing house scenes, storybook balloons, and bespoke keepsakes currently enchanting our community.",
+        "collection": "",
+        "products_to_show": 4,
+        "show_swatches": true
+      }
+    },
+    "stories": {
+      "type": "story-highlights",
+      "settings": {
+        "heading": "A Duality of Craft and Story",
+        "subheading": "Balancing luminous resin artistry with heartfelt narratives that make every ARC piece uniquely yours."
+      }
+    },
+    "gallery": {
+      "type": "gallery-media",
+      "settings": {
+        "heading": "Peek Into the ARC Studio",
+        "subheading": "From twinkling villages to balloon adventures, explore media that captures Alison's world-building in resin."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "featured",
+    "stories",
+    "gallery"
+  ]
+}
