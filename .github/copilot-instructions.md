@@ -1,49 +1,92 @@
-# Copilot Instructions for RDGScripts
+# ARC (Alison Resin Creations) - AI Coding Instructions
 
 ## Project Overview
-RDGScripts is a repository of PowerShell scripts and modules for automating and managing Windows infrastructure, including Active Directory, Certificate Services, DHCP, Firewall, and lab environments. Scripts are organized by functional area in subfolders (e.g., `AdaxesFunctions`, `AutomatedLab`, `DHCPmigration`, `FirewallUpgrade`, `Functions`).
+This is a hybrid e-commerce system for handmade resin art products combining:
+- **Shopify backend** for inventory/checkout via Storefront API
+- **GitHub Pages frontend** as a static storefront with cart functionality
+- **PowerShell automation** to convert product media into Shopify CSV imports
 
-## Key Patterns and Conventions
-- **Script Organization:**
-  - Scripts are grouped by scenario or technology in dedicated folders.
-  - Shared functions and utilities are in the `Functions/` directory.
-  - Some folders (e.g., `AdaxesFunctions/`, `AutomatedLab/`) contain both scripts and documentation (Markdown, HTML).
-- **PowerShell Practices:**
-  - Functions use approved PowerShell verbs (e.g., `Get-`, `Set-`, `Invoke-`, `Start-`, `Stop-`).
-  - Error handling is implemented using `try/catch` and `Write-Error`.
-  - Parameter validation uses `[ValidateSet]`, `[ValidateNotNullOrEmpty]`, and `[ValidateRange]`.
-  - Scripts may wrap native Windows command-line tools (e.g., `shutdown.exe`).
-- **Documentation:**
-  - Top-level `README.md` is minimal; most documentation is scenario-specific and found in subfolders.
-  - Example usage is often included as comments within scripts.
+## Architecture & Data Flow
 
-## Developer Workflows
-- **Editing and Running Scripts:**
-  - Scripts are intended to be run in Windows PowerShell or PowerShell Core.
-  - Some scripts require administrative privileges or remote access permissions.
-- **Testing:**
-  - No formal test framework detected; manual testing and example invocations are common.
-- **Module Usage:**
-  - Some subfolders (e.g., `adcstools-main`) contain PowerShell modules that can be installed via PowerShell Gallery.
+### Product Media → Shopify Pipeline
+- `resources/ARCfiles.csv`: PowerShell export of all product images/videos
+- **Color variant detection**: Files differing only by color words (pink/white/yellow/blue/gold/silver/black/green/red/purple/teal/grey) become variants of one product
+- **Quote extraction**: Files containing `quote` have quoted text extracted for product descriptions
+- **Image URLs**: Generated as raw GitHub URLs pointing to current branch for Shopify import
+- Output: `shopify/products_import.csv` with proper Shopify format
+
+### Site Structure (GitHub Pages)
+```
+/site/
+  /assets/css/arc.css         # Light theme, gold/black accents
+  /assets/js/shopify.js       # Storefront API client + cart
+  /assets/js/ui.js            # Product rendering, gallery
+  index.html                  # Hero with featured products
+  gallery.html                # Tiled view with embedded videos
+  shop.html                   # Product list with filters
+  product.html?handle=...     # Detail page with variants
+  about.html, faq.html, etc.
+```
+
+## Key Development Patterns
+
+### Product Grouping Logic
+When processing `ARCfiles.csv`:
+- **Base product**: Remove file extension, "(2)" suffixes, extra spaces
+- **Color variants**: Group files by base name + color detection
+- **Separate products**: Different base names = different products
+- **Title/Handle**: Title Case → kebab-case conversion
+
+### Shopify Integration
+- **Config via JSON script block**: No server env variables needed for GitHub Pages
+- **Cart persistence**: Use `localStorage` for cart ID across sessions
+- **Video embedding**: Match `.mp4` files to products by handle/title base name
+- **Raw GitHub URLs**: Format `https://raw.githubusercontent.com/<owner>/<repo>/<branch>/resources/images/<file>`
+
+### PowerShell Conventions
+- `tools/Build-ARC-ShopifyCsv.ps1`: Main CSV generation script
+- Process only `PSIsContainer == False` rows from ARCfiles.csv
+- Output structured summary: product count, variant count, images, videos
+
+## Critical Files & Dependencies
+
+- `Instructions.md`: Complete specification for Shopify CSV + site requirements
+- `resources/WebsiteNotes.md`: Site structure requirements (gallery, shop, about, etc.)
+- `resources/ARCfiles.csv`: Source data for all products (PowerShell Get-ChildItem export)
+- `resources/images/ARC-Logo.png`: Brand logo to copy into site assets
+
+## Development Workflow
+
+### Branch Strategy
+- **Main branch**: `prod` (not `main`)
+- **Feature branches**: `feat/arc-initial-site` pattern
+- **Non-destructive**: Never modify existing files outside new folders
+
+### CSV Regeneration
+```powershell
+./tools/Build-ARC-ShopifyCsv.ps1
+# Reads ARCfiles.csv → outputs shopify/products_import.csv
+```
+
+### Required Shopify CSV Columns
+Title, Handle, Option1 Name/Value, Variant Price/Grams/Inventory Qty/Policy/Fulfillment Service/Requires Shipping/Taxable/Weight Unit, Published, Status, Image Src/Position/Alt Text
+
+### Environment Setup
+- `.env.example`: Template for Shopify credentials
+- Config loaded via `<script type="application/json" id="arc-config">` for static hosting
+
+## Project-Specific Conventions
+
+- **Vendor**: Always "Alison Resin Creations (ARC)"
+- **Type**: Always "Resin Art"  
+- **Pricing defaults**: $0.00 (manual override), 0 inventory, deny policy
+- **Tags**: Derived from title keywords + color variants
+- **Meta descriptions**: "Hand-made resin creation: <Title>."
+- **Quote metafields**: `product.metafields.custom.quote` for extracted quotes
 
 ## Integration Points
-- **External Dependencies:**
-  - Scripts may depend on Windows features (Active Directory, DHCP, Certificate Services).
-  - Some modules (e.g., `ADCSTools`) are published to PowerShell Gallery.
-- **Cross-Script Communication:**
-  - Shared functions are imported or dot-sourced from the `Functions/` directory.
 
-## Examples
-- **Remote Shutdown Wrapper:** See scripts like `Invoke-RemoteComputerShutdown` for best practices in wrapping native commands and error handling.
-- **Lab Automation:** See `AutomatedLab/` for scripts that configure and document lab environments.
-- **Active Directory Queries:** See `Functions/ActiveDirectoryQueries.ps1` for reusable AD functions.
-
-## Recommendations for AI Agents
-- Use approved PowerShell verbs for new functions.
-- Place scenario-specific scripts in the appropriate subfolder.
-- Add example usage as comments in scripts.
-- Follow existing parameter validation and error handling patterns.
-- Reference and reuse shared functions from `Functions/` when possible.
-
----
-If any conventions or workflows are unclear, please ask for clarification or examples from the maintainers.
+- **Shopify Admin**: Manual CSV import after generation
+- **Storefront API**: Product fetching, cart operations, checkout redirect
+- **GitHub Pages**: Static hosting with API integration via client-side JS
+- **Media matching**: Cross-reference images/videos by filename patterns
