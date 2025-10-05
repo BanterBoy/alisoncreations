@@ -1,0 +1,363 @@
+{
+  "branch": "feat/arc-initial-site",
+  "mediaBase": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos",
+  "videos": {
+    "big-house-scene": [
+      {
+        "file": "Big  house scene.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Big%20%20house%20scene.mp4"
+      }
+    ],
+    "big-coloured-light-up-house-scene": [
+      {
+        "file": "Big coloured light up house scene.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Big%20coloured%20light%20up%20house%20scene.mp4"
+      }
+    ],
+    "big-light-up-house-scene": [
+      {
+        "file": "Big light up house scene.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Big%20light%20up%20house%20scene.mp4"
+      }
+    ],
+    "blue-green-frod": [
+      {
+        "file": "Blue -green frod mix.mp4",
+        "color": "Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Blue%20-green%20frod%20mix.mp4"
+      }
+    ],
+    "boat-with-flower-anchor-gold-rope": [
+      {
+        "file": "Boat with flower Anchor gold rope.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Boat%20with%20flower%20Anchor%20gold%20rope.mp4"
+      }
+    ],
+    "boat-with-flower-anchor": [
+      {
+        "file": "Boat with flower Anchor white.mp4",
+        "color": "White",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Boat%20with%20flower%20Anchor%20white.mp4"
+      }
+    ],
+    "cat": [
+      {
+        "file": "Cat mix.mp4",
+        "color": "Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Cat%20mix.mp4"
+      }
+    ],
+    "cloud-villiage-with-quote": [
+      {
+        "file": "Cloud villiage with quote 7.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Cloud%20villiage%20with%20quote%207.mp4"
+      }
+    ],
+    "dingy-and-anchor-sets": [
+      {
+        "file": "Dingy and Anchor sets.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Dingy%20and%20Anchor%20sets.mp4"
+      }
+    ],
+    "elephant": [
+      {
+        "file": "Elephant .mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Elephant%20.mp4"
+      }
+    ],
+    "family-flowered": [
+      {
+        "file": "Family (flowered).mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Family%20%28flowered%29.mp4"
+      }
+    ],
+    "flower-cup-saucer": [
+      {
+        "file": "Flower cup-saucer mix.mp4",
+        "color": "Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Flower%20cup-saucer%20mix.mp4"
+      }
+    ],
+    "flower-jars": [
+      {
+        "file": "Flower jars mix.mp4",
+        "color": "Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Flower%20jars%20mix.mp4"
+      }
+    ],
+    "flower-pots": [
+      {
+        "file": "Flower Pots mix.mp4",
+        "color": "Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Flower%20Pots%20mix.mp4"
+      }
+    ],
+    "hanging-butterfly-with-flowers": [
+      {
+        "file": "Hanging Butterfly with flowers.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Hanging%20Butterfly%20with%20flowers.mp4"
+      }
+    ],
+    "heart-candel-holder-white-with-house": [
+      {
+        "file": "Heart candel holder white with house 2.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Heart%20candel%20holder%20white%20with%20house%202.mp4"
+      },
+      {
+        "file": "Heart candel holder white with house.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Heart%20candel%20holder%20white%20with%20house.mp4"
+      }
+    ],
+    "heart-candel-stich-holder-with-house-flowers-l": [
+      {
+        "file": "Heart candel stich holder with house flowers L white.mp4",
+        "color": "White",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Heart%20candel%20stich%20holder%20with%20house%20flowers%20L%20white.mp4"
+      }
+    ],
+    "heart-candel-stich-holder-with-house-flowers-rwhite": [
+      {
+        "file": "Heart candel stich holder with house flowers Rwhite.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Heart%20candel%20stich%20holder%20with%20house%20flowers%20Rwhite.mp4"
+      }
+    ],
+    "home-flowered": [
+      {
+        "file": "Home (flowered).mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Home%20%28flowered%29.mp4"
+      }
+    ],
+    "house-heart": [
+      {
+        "file": "House -heart white.mp4",
+        "color": "White",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/House%20-heart%20white.mp4"
+      }
+    ],
+    "houses-scene": [
+      {
+        "file": "Houses scene 1..mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Houses%20scene%201..mp4"
+      },
+      {
+        "file": "Houses scene 2.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Houses%20scene%202.mp4"
+      },
+      {
+        "file": "Houses scene 3.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Houses%20scene%203.mp4"
+      }
+    ],
+    "large-seated-teddy": [
+      {
+        "file": "Large seated teddy mix.mp4",
+        "color": "Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Large%20seated%20teddy%20mix.mp4"
+      }
+    ],
+    "love-flowered": [
+      {
+        "file": "Love (flowered).mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Love%20%28flowered%29.mp4"
+      }
+    ],
+    "paw-print-quote": [
+      {
+        "file": "Paw print quote 4.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Paw%20print%20quote%204.mp4"
+      }
+    ],
+    "peek-a-boo-teddy": [
+      {
+        "file": "Peek a boo Teddy mix.mp4",
+        "color": "Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Peek%20a%20boo%20Teddy%20mix.mp4"
+      },
+      {
+        "file": "Peek a boo Teddy.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Peek%20a%20boo%20Teddy.mp4"
+      }
+    ],
+    "pxl-20250512-130541676-ts": [
+      {
+        "file": "PXL_20250512_130541676.TS.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/PXL_20250512_130541676.TS.mp4"
+      }
+    ],
+    "raindeer": [
+      {
+        "file": "raindeer mix.mp4",
+        "color": "Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/raindeer%20mix.mp4"
+      }
+    ],
+    "rose-teddy": [
+      {
+        "file": "Rose teddy mix.mp4",
+        "color": "Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Rose%20teddy%20mix.mp4"
+      }
+    ],
+    "set-of-2-houses-with-flowers": [
+      {
+        "file": "Set of 2 houses with flowers white.mp4",
+        "color": "White",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Set%20of%202%20houses%20with%20flowers%20white.mp4"
+      }
+    ],
+    "set-of-3-bunnys": [
+      {
+        "file": "Set of 3 bunnys mix.mp4",
+        "color": "Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Set%20of%203%20bunnys%20mix.mp4"
+      }
+    ],
+    "set-of-3-flower-vases-set": [
+      {
+        "file": "Set of 3 flower vases set 1.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Set%20of%203%20flower%20vases%20set%201.mp4"
+      }
+    ],
+    "set-of-five-mushroons": [
+      {
+        "file": "Set of five mushroons.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Set%20of%20five%20mushroons.mp4"
+      }
+    ],
+    "set-of-three-mushroons": [
+      {
+        "file": "Set of three mushroons.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Set%20of%20three%20mushroons.mp4"
+      }
+    ],
+    "set-of-two-gnome": [
+      {
+        "file": "Set of two Gnome.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Set%20of%20two%20Gnome.mp4"
+      }
+    ],
+    "sets-of-balloon-teddy": [
+      {
+        "file": "Sets of Balloon Teddy mix.mp4",
+        "color": "Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Sets%20of%20Balloon%20Teddy%20mix.mp4"
+      }
+    ],
+    "sitting-angel": [
+      {
+        "file": "Sitting Angel.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Sitting%20Angel.mp4"
+      }
+    ],
+    "sitting-teddy-small": [
+      {
+        "file": "Sitting teddy small mix.mp4",
+        "color": "Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Sitting%20teddy%20small%20mix.mp4"
+      }
+    ],
+    "snow-scene": [
+      {
+        "file": "Snow scene mix.mp4",
+        "color": "Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Snow%20scene%20mix.mp4"
+      }
+    ],
+    "teddy-on-bench": [
+      {
+        "file": "Teddy on bench mix.mp4",
+        "color": "Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Teddy%20on%20bench%20mix.mp4"
+      }
+    ],
+    "teddy-on-heart-bench-with-flower": [
+      {
+        "file": "Teddy on heart Bench with flower.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Teddy%20on%20heart%20Bench%20with%20flower.mp4"
+      }
+    ],
+    "teddy-on-star-bench-with-flower": [
+      {
+        "file": "Teddy on Star Bench with flower.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Teddy%20on%20Star%20Bench%20with%20flower.mp4"
+      }
+    ],
+    "teddy-s-with-crystals": [
+      {
+        "file": "Teddy's with crystals blue.mp4",
+        "color": "Blue",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Teddy%27s%20with%20crystals%20blue.mp4"
+      },
+      {
+        "file": "Teddy's with crystals pink.mp4",
+        "color": "Pink",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Teddy%27s%20with%20crystals%20pink.mp4"
+      }
+    ],
+    "tents-with-candel": [
+      {
+        "file": "Tents with candel light mix (2).mp4",
+        "color": "Light Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Tents%20with%20candel%20light%20mix%20%282%29.mp4"
+      },
+      {
+        "file": "Tents with candel light mix.mp4",
+        "color": "Light Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Tents%20with%20candel%20light%20mix.mp4"
+      },
+      {
+        "file": "Tents with candel light pink.mp4",
+        "color": "Light Pink",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Tents%20with%20candel%20light%20pink.mp4"
+      }
+    ],
+    "unicorn-teddy-set": [
+      {
+        "file": "Unicorn-Teddy set.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Unicorn-Teddy%20set.mp4"
+      }
+    ],
+    "unicorn-teddy-star-set": [
+      {
+        "file": "Unicorn-Teddy- Star set.mp4",
+        "color": null,
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Unicorn-Teddy-%20Star%20set.mp4"
+      }
+    ],
+    "wooden-house-scene": [
+      {
+        "file": "Wooden house scene mix.mp4",
+        "color": "Mix",
+        "url": "https://raw.githubusercontent.com/BanterBoy/alisoncreations/feat/arc-initial-site/resources/videos/Wooden%20house%20scene%20mix.mp4"
+      }
+    ]
+  }
+}
