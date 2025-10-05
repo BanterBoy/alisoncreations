@@ -1,0 +1,30 @@
+<section class="section-inner collection">
+  <header>
+    <h1>{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <div class="rte">{{ collection.description }}</div>
+    {% endif %}
+  </header>
+  <div class="collection-grid">
+    {% for product in collection.products %}
+      <article class="collection-card">
+        <a href="{{ product.url }}">
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | image_url: width: 800, format: 'webp' }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy">
+          {% endif %}
+          <div class="collection-card-body">
+            <h2>{{ product.title }}</h2>
+            <p class="price">{{ product.price | money }}</p>
+          </div>
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection products",
+  "settings": []
+}
+{% endschema %}

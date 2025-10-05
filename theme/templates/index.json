@@ -1,0 +1,36 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-video",
+      "settings": {
+        "heading": "Arc Resin Creations",
+        "subheading": "Glimmering keepsakes, custom commissions, and luminous décor handcrafted in resin.",
+        "cta_label": "Browse featured collections",
+        "cta_link": "/collections/all"
+      }
+    },
+    "featured": {
+      "type": "featured-collections",
+      "settings": {
+        "heading": "Discover our favourites",
+        "subheading": "Automated nightly sync keeps this list fresh from the media folder."
+      },
+      "blocks": {
+        "featured-1": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured-2": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": ["featured-1", "featured-2"]
+    }
+  },
+  "order": ["hero", "featured"]
+}

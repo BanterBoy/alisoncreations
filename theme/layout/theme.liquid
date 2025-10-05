@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page_title }}{% if current_tags %} – {{ current_tags | join: ', ' }}{% endif %}{% if current_page != 1 %} – Page {{ current_page }}{% endif %}</title>
+    <meta name="description" content="{{ page_description | escape }}">
+    {{ content_for_header }}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+  </head>
+  <body class="{{ template | handle }}">
+    <a class="skip-link" href="#MainContent">Skip to content</a>
+    <header class="site-header">
+      {% section 'header' %}
+    </header>
+    <main id="MainContent" class="site-main" role="main">
+      {{ content_for_layout }}
+    </main>
+    <footer class="site-footer">
+      {% section 'footer' %}
+    </footer>
+    {{ 'theme.js' | asset_url | script_tag }}
+  </body>
+</html>
